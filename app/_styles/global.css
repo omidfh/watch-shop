@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply Next.js font variable */
+html {
+  background-color: black;
+  color: white;
+  font-family: var(--font-dosis); /* Use the font variable */
+  font-size: large;
+  font-style: normal;
+}
+
+.specialPadding {
+  padding-left: 16rem;
+  padding-right: 16rem;
+}
+
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* اعمال انیمیشن روی هر لوگو */
+.outAnimation {
+  animation: slideAnimation 10s ease-in-out infinite;
+}
+
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  justify-content: center;
+}
+.embla__slide {
+  /* flex: 0 0 100%; */
+  min-width: 0;
+}
