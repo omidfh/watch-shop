@@ -12,8 +12,17 @@ html {
 }
 
 .specialPadding {
-  padding-left: 16rem;
-  padding-right: 16rem;
+  /* margin-left: 16rem;
+  margin-right: 16rem; */
+  position: relative;
+  width: 65%;
+  left: 18%;
+  /* display: flex;
+  /*
+  justify-content: center;
+  max-width: 60%;
+  right: 25%;
+  left: 20%; */
 }
 
 @keyframes slideAnimation {

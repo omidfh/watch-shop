@@ -1,5 +1,4 @@
 import Discover from "./_components/home/Discover";
-import Footer from "./_components/home/Footer";
 import HomeProductList from "./_components/home/HomeProductList";
 import LogoSlider from "./_components/home/LogoSlider";
 import Specifics from "./_components/home/Specifics";

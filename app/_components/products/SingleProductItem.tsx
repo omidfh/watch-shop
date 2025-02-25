@@ -9,7 +9,7 @@ type Props = {
   image: StaticImageData;
 };
 
-export default function SingleProduct({ name, price, image }: Props) {
+export default function SingleProductItem({ name, price, image }: Props) {
   return (
     <div className="flex flex-col justify-between bg-stone-400 bg-opacity-10 ">
       <div className="flex flex-col">
@@ -25,6 +25,11 @@ export default function SingleProduct({ name, price, image }: Props) {
             className="object-contain"
             width={300}
           />
+        </div>
+        <div className="flex flex-col">
+          <p>test</p>
+          <p>test</p>
+          <p>test</p>
         </div>
       </div>
       <div className="flex flex-col">
