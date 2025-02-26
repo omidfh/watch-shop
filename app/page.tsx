@@ -6,29 +6,42 @@ import Watch from "./_components/home/Watch";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-between gap-24">
+    <div className="flex flex-col justify-between gap-24 ">
       <div className="flex flex-col gap-40">
         {/* //*  PART 1 */}
-        <div className="flex specialPadding ">
-          <Discover />
-          <Watch />
+        <div className="flex justify-center">
+          <div className="flex flex-col items-center w-full max-w-[65%] ">
+            <div className="flex">
+              {" "}
+              <Discover />
+              <Watch />
+            </div>
+          </div>
         </div>
 
         {/* //* PART 2 */}
-        <div className="bg-gray-100 bg-opacity-15 w-[100%] ">
-          <Specifics />
+        <div className="flex justify-center bg-gray-100 bg-opacity-15  ">
+          <div className="max-w-[65%] ">
+            <Specifics />
+          </div>
         </div>
 
         {/* //* PART 3 */}
-        <div className="flex specialPadding">
-          <HomeProductList />
+        <div className="flex justify-center">
+          <div className="max-w-[65%] ">
+            <HomeProductList />
+          </div>
         </div>
 
         {/* //* PART 4 */}
         <div>
           <hr className="border-stone-400 border-opacity-30" />
-          <div className="specialPadding py-6">
-            <LogoSlider />
+          <div className="flex justify-center py-6 ">
+            <div className="max-w-[65%] ">
+              <div className="flex justify-center">
+                <LogoSlider />
+              </div>
+            </div>
           </div>
           <hr className="border-stone-400 border-opacity-30" />
         </div>

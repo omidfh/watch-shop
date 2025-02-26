@@ -44,11 +44,6 @@ html {
   }
 }
 
-/* اعمال انیمیشن روی هر لوگو */
-.outAnimation {
-  animation: slideAnimation 10s ease-in-out infinite;
-}
-
 .embla {
   overflow: hidden;
 }
@@ -59,4 +54,21 @@ html {
 .embla__slide {
   /* flex: 0 0 100%; */
   min-width: 0;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+#filterLabel {
+  color: silver;
+  font-size: 1.1rem;
+  font-weight: 550;
+  opacity: 80%;
 }

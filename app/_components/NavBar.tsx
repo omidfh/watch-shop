@@ -10,11 +10,11 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <div className="bg-transparent h-11 flex specialPadding  py-8">
+    <div className="flex h-11 py-16">
       {/* <div className=""> */}
 
       {/* </div> */}
-      <ul className="flex flex-row list-none gap-8 bg-background items-center py-8 text-lg text-stone-300">
+      <ul className="flex flex-row list-none gap-8 bg-background items-center  text-lg text-stone-300">
         <li>
           <Link href={"/"}>
             <div className="border-yellow-100 border border-opacity-30">

@@ -23,16 +23,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex flex-col justify-between gap-12 ${dosis.className} h-[100dvh]`}
+        className={`flex flex-col justify-between gap-12 ${dosis.className} h-[100dvh] `}
       >
-        <div className="flex flex-col">
-          <NavBar />
-          <main className="mt-8 pt-12">{children}</main>
+        {/* <div className="flex flex-col items-center w-full max-w-[65%]"> */}
+        {/* <div className="flex flex-col"> */}
+        <div className="flex w-[100%] justify-center">
+          <div className="flex items-center w-full max-w-[65%]  justify-start">
+            <NavBar />
+          </div>
         </div>
+        <main className=" ">{children}</main>
+        {/* </div> */}
         {/* //*FOOTER */}
-        <div className="bg-amber-100 bg-opacity-40">
-          <Footer />
+        <div className=" flex w-[100%] justify-center  bg-amber-100 bg-opacity-40 ">
+          <div className="flex items-center w-full max-w-[65%]  justify-center">
+            <Footer />
+          </div>
         </div>
+        {/* </div> */}
       </body>
     </html>
   );

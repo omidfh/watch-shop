@@ -6,7 +6,7 @@ import logo from "@/public/logo.jpg";
 
 export default function FooterLeftPart() {
   return (
-    <div className="flex flex-col gap-6 w-[40%]">
+    <div className="flex flex-col gap-6 w-[35%]">
       <div>
         {" "}
         <Image width={"50"} height={"50"} src={logo} alt="logo" quality={100} />

@@ -1,12 +1,12 @@
 import React from "react";
-import { FaArrowRight, FaHeadphones } from "react-icons/fa";
+import { FaHeadphones } from "react-icons/fa";
 import { IoIosTimer } from "react-icons/io";
 import SingleSpecific from "./SingleSpecific";
 import { IoBag } from "react-icons/io5";
 
 export default function Specifics() {
   return (
-    <div className="flex justify-between specialPadding py-28">
+    <div className="flex justify-between  py-28">
       <SingleSpecific
         title={"Authentic Timepieces Guaranteed"}
         description={
