@@ -1,0 +1,77 @@
+/* ClockLoader.css */
+.clock-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.clock-face {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ffd700; /* Golden frame */
+  border-radius: 50%;
+  background: black; /* Black background */
+}
+
+.hour-marker {
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  background: white; /* White hour markers */
+  top: 5px;
+  left: 50%;
+  transform-origin: 50% 45px;
+}
+
+.hour-hand {
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  background: white; /* White hour hand */
+  top: 20px;
+  left: 50%;
+  transform-origin: 50% 30px;
+  animation: rotateHour 24s linear infinite;
+}
+
+.minute-hand {
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: white; /* White minute hand */
+  top: 10px;
+  left: 50%;
+  transform-origin: 50% 40px;
+  animation: rotateMinute 1.5s linear infinite;
+}
+
+.center-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white; /* White center dot */
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotateHour {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateMinute {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
