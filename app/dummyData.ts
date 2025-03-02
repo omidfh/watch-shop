@@ -10,7 +10,7 @@ export const dummyData = [
     color: "gold",
     brand: "henry",
     gender: "male",
-    picture: "@/public/example-watch.png",
+    picture: "/example-watch.png",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const dummyData = [
     color: "silver",
     brand: "rolex",
     gender: "male",
-    picture: "@/public/example-watch2.png",
+    picture: "/example-watch2.png",
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ export const dummyData = [
     color: "brown",
     brand: "fossil",
     gender: "male",
-    picture: "@/public/example-watch3.png",
+    picture: "/example-watch3.png",
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ export const dummyData = [
     color: "black",
     brand: "casio",
     gender: "male",
-    picture: "@/public/example-watch.png",
+    picture: "/example-watch4.png",
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ export const dummyData = [
     color: "blue",
     brand: "omega",
     gender: "male",
-    picture: "@/public/example-watch2.png",
+    picture: "/example-watch2.png",
   },
   {
     id: 6,
@@ -75,7 +75,7 @@ export const dummyData = [
     color: "rose gold",
     brand: "michael kors",
     gender: "female",
-    picture: "@/public/example-watch3.png",
+    picture: "/example-watch5.png",
   },
   {
     id: 7,
@@ -88,7 +88,7 @@ export const dummyData = [
     color: "black",
     brand: "garmin",
     gender: "unisex",
-    picture: "@/public/example-watch.png",
+    picture: "/example-watch.png",
   },
   {
     id: 8,
@@ -101,7 +101,7 @@ export const dummyData = [
     color: "black",
     brand: "tag heuer",
     gender: "male",
-    picture: "@/public/example-watch2.png",
+    picture: "/example-watch3.png",
   },
   {
     id: 9,
@@ -114,7 +114,7 @@ export const dummyData = [
     color: "blue",
     brand: "citizen",
     gender: "male",
-    picture: "@/public/example-watch3.png",
+    picture: "/example-watch5.png",
   },
   {
     id: 10,
@@ -127,7 +127,7 @@ export const dummyData = [
     color: "green",
     brand: "seiko",
     gender: "male",
-    picture: "@/public/example-watch.png",
+    picture: "/example-watch.png",
   },
   {
     id: 11,
@@ -140,7 +140,7 @@ export const dummyData = [
     color: "white",
     brand: "apple",
     gender: "unisex",
-    picture: "@/public/example-watch2.png",
+    picture: "/example-watch4.png",
   },
   {
     id: 12,
@@ -153,7 +153,7 @@ export const dummyData = [
     color: "silver",
     brand: "tissot",
     gender: "male",
-    picture: "@/public/example-watch3.png",
+    picture: "/example-watch3.png",
   },
   {
     id: 13,
@@ -166,7 +166,7 @@ export const dummyData = [
     color: "black",
     brand: "hublot",
     gender: "male",
-    picture: "@/public/example-watch.png",
+    picture: "/example-watch.png",
   },
   {
     id: 14,
@@ -179,6 +179,6 @@ export const dummyData = [
     color: "black",
     brand: "longines",
     gender: "male",
-    picture: "@/public/example-watch2.png",
+    picture: "/example-watch2.png",
   },
 ];

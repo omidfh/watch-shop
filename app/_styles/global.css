@@ -67,8 +67,75 @@ input[type="number"] {
 }
 
 #filterLabel {
-  color: silver;
+  color: rgb(255, 239, 149);
   font-size: 1.1rem;
   font-weight: 550;
-  opacity: 80%;
+  opacity: 75%;
+  text-transform: capitalize;
+}
+
+@keyframes newSlide {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.shoppingCart:hover {
+  animation: newSlide 1.5s ease-in-out;
+}
+
+.activeFilter {
+  /* display: flex; */
+  opacity: 1;
+  max-height: 500px; /* Adjust to fit your filter content */
+  transform: translateY(0);
+  overflow: hidden;
+  animation: fadeInFilter 0.5s ease-out forwards;
+}
+
+.inactiveFilter {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-20px);
+  animation: fadeOutFilter 0.5s ease-in forwards;
+}
+
+@keyframes fadeInFilter {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+    max-height: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 800px; /* Adjust accordingly */
+  }
+}
+
+@keyframes fadeOutFilter {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 800px; /* Match the active state */
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+    max-height: 0;
+  }
 }

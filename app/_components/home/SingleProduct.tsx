@@ -22,7 +22,7 @@ export default function SingleProduct({ name, price, image }: Props) {
           <Image
             src={image}
             alt="watch-photo"
-            className="object-contain"
+            className="object-contain transition-transform duration-300 hover:scale-110"
             width={300}
           />
         </div>
