@@ -93,19 +93,6 @@ export default function CatalogFilter({ isActive }: { isActive: boolean }) {
           options={getSelections("strap")}
         />
       </div>
-      {/* //* sort */}
-      {/* <div className="flex justify-end ">
-          <div className="flex flex-col  items-center h-full">
-            <label htmlFor="sort">Sort</label>
-            <div>
-              <select className="bg-transparent" id="sort" name="sort">
-                <option value="price-asc">Price from top</option>
-                <option value="price-desc">Price from down</option>
-              </select>
-            </div>
-          </div>
-        </div> */}
-      {/* </div> */}
     </div>
   );
 }

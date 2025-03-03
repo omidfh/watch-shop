@@ -11,7 +11,7 @@ export default function Home() {
         {/* //*  PART 1 */}
         <div className="flex justify-center">
           <div className="flex flex-col items-center w-full max-w-[65%] ">
-            <div className="flex">
+            <div className="flex justify-between w-full">
               {" "}
               <Discover />
               <Watch />

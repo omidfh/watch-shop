@@ -3,12 +3,14 @@ import React from "react";
 
 export default function Discover() {
   return (
-    <div className="flex flex-col items-start justify-start   gap-14 w-[30%]">
+    <div className="flex flex-col items-start justify-start gap-14 w-[30%]">
       <div className="flex flex-col justify-evenly items-start gap-4 uppercase tracking-wide">
         <p className="text-yellow-200 text-xs text-opacity-70 tracking-wider">
           Timeless Elegance
         </p>
-        <h3 className=" text-6xl">Discover Watches That Define Your Style</h3>
+        <h3 className=" lg:text-6xl md:text-3xl ">
+          Discover Watches That Define Your Style
+        </h3>
       </div>
 
       <div className="flex gap-4">

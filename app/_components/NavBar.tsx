@@ -5,12 +5,18 @@ import Link from "next/link";
 import React from "react";
 import logo from "@/public/logo.jpg";
 import { usePathname } from "next/navigation";
+import LoginBtn from "./LoginBtn";
+import Avatar from "./Avatar";
+import { IoMdCart } from "react-icons/io";
+import CartBtn from "./CartBtn";
 
 export default function NavBar() {
   const pathname = usePathname();
 
+  const isLoggedIn = true;
+
   return (
-    <div className="flex h-11 py-16">
+    <div className="flex h-11 py-16 justify-between w-full items-center">
       {/* <div className=""> */}
 
       {/* </div> */}
@@ -53,6 +59,16 @@ export default function NavBar() {
           </li>
         ))}
       </ul>
+      <div className="flex  ">
+        {isLoggedIn ? (
+          <div className="flex items-center gap-4">
+            <CartBtn />
+            <Avatar />
+          </div>
+        ) : (
+          <LoginBtn />
+        )}
+      </div>
     </div>
   );
 }

@@ -7,6 +7,9 @@ import CatalogFilter from "../_components/products/CatalogFilter";
 import SingleProductItem from "../_components/products/SingleProductItem";
 import { dummyData } from "../dummyData";
 import { LuSquareMinus, LuSquarePlus } from "react-icons/lu";
+import Sort from "../_components/products/Sort";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Pagination from "../_components/Pagination";
 
 export default function page() {
   const [showFilters, setShowFilters] = useState(false);
@@ -26,15 +29,18 @@ export default function page() {
       <div className="flex w-full  justify-center mx-auto">
         <div className="flex lg:flex-row md:flex-col sm:flex-col sm:gap-8 lg:items-start md:items-center justify-center w-full">
           {/* //*filters */}
-          <div className="bg-stone-400 bg-opacity-10 min-w-[15%]">
-            <button
-              onClick={() => toggleFilter()}
-              className="flex w-full justify-between gap-3 items-center p-4"
-            >
-              <p className="text-xl my-auto">Filters</p>
-              {showFilters ? <LuSquareMinus /> : <LuSquarePlus />}{" "}
-            </button>
-            {showFilters && <CatalogFilter isActive={showFilters} />}
+          <div className="flex flex-col min-w-[15%] gap-4">
+            <Sort />
+            <div className="bg-stone-400 bg-opacity-10 ">
+              <button
+                onClick={() => toggleFilter()}
+                className="flex w-full justify-between gap-3 items-center p-4"
+              >
+                <p className="text-xl my-auto">Filters</p>
+                {showFilters ? <LuSquareMinus /> : <LuSquarePlus />}{" "}
+              </button>
+              {showFilters && <CatalogFilter isActive={showFilters} />}
+            </div>
           </div>
 
           {/* //* products */}
@@ -56,6 +62,8 @@ export default function page() {
           </div>
         </div>
       </div>
+
+      <Pagination totalPage={5} currentPage={2} />
     </div>
   );
 }
