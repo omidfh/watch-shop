@@ -7,7 +7,7 @@ export default function CartBtn() {
     <div>
       <Link
         href={"/cart"}
-        className="hover:text-yellow-100  transition-all duration-200 ease-in-out"
+        className="text-stone-300  hover:text-yellow-100  transition-all duration-200 ease-in-out"
       >
         <IoMdCart className="text-4xl" />
       </Link>

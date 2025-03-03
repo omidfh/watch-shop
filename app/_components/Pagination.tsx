@@ -19,7 +19,7 @@ export default function Pagination({ totalPage, currentPage }: Props) {
 
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="flex gap-3 items-center bg-stone-400 bg-opacity-10 text-2xl p-2 rounded">
+      <div className="flex gap-3 items-center bg-stone-400 bg-opacity-10 text-xl p-2 rounded">
         {/* Previous Button */}
         <button
           className="flex items-center p-1 disabled:opacity-50 "
