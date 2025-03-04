@@ -11,6 +11,8 @@ export const dummyData = [
     brand: "henry",
     gender: "male",
     picture: "/example-watch.png",
+    description:
+      "A sleek Henry London smartwatch for men, blending modern technology with classic style. Crafted from stainless steel with a luxurious gold finish and a premium leather strap, perfect for the sophisticated gentleman.",
   },
   {
     id: 2,
@@ -24,6 +26,8 @@ export const dummyData = [
     brand: "rolex",
     gender: "male",
     picture: "/example-watch2.png",
+    description:
+      "An iconic Rolex Oyster Perpetual, designed for men who value timeless luxury. Made from solid gold with a silver-toned metal strap, this masterpiece offers precision and elegance at a discounted price.",
   },
   {
     id: 3,
@@ -37,6 +41,8 @@ export const dummyData = [
     brand: "fossil",
     gender: "male",
     picture: "/example-watch3.png",
+    description:
+      "The Fossil Grant Chronograph combines vintage-inspired design with modern functionality. Featuring a stainless steel case and a rich brown leather strap, this men’s watch is ideal for everyday wear.",
   },
   {
     id: 4,
@@ -50,6 +56,8 @@ export const dummyData = [
     brand: "casio",
     gender: "male",
     picture: "/example-watch4.png",
+    description:
+      "A rugged Casio G-Shock Classic for men, built to withstand tough conditions. Made from durable resin with a black rubber strap, this watch offers practicality and style at a great discount.",
   },
   {
     id: 5,
@@ -63,6 +71,8 @@ export const dummyData = [
     brand: "omega",
     gender: "male",
     picture: "/example-watch2.png",
+    description:
+      "The Omega Seamaster Diver is a premium men’s watch for adventure seekers. Crafted from lightweight titanium with a blue metal strap, it’s designed for both underwater exploration and refined style.",
   },
   {
     id: 6,
@@ -76,6 +86,8 @@ export const dummyData = [
     brand: "michael kors",
     gender: "female",
     picture: "/example-watch5.png",
+    description:
+      "A glamorous Michael Kors Parker Watch for women, featuring a stainless steel case and a rose gold metal strap. This chic timepiece adds a touch of elegance to any outfit, now at a special discount.",
   },
   {
     id: 7,
@@ -89,6 +101,8 @@ export const dummyData = [
     brand: "garmin",
     gender: "unisex",
     picture: "/example-watch.png",
+    description:
+      "The Garmin Fenix 6 Pro is a high-performance unisex smartwatch for fitness enthusiasts. Built with a sturdy polymer case and a black silicone strap, it’s perfect for tracking your active lifestyle.",
   },
   {
     id: 8,
@@ -102,6 +116,8 @@ export const dummyData = [
     brand: "tag heuer",
     gender: "male",
     picture: "/example-watch3.png",
+    description:
+      "A sophisticated TAG Heuer Carrera for men, blending sporty design with luxury. Made from stainless steel with a black leather strap, this watch offers timeless appeal at a slight discount.",
   },
   {
     id: 9,
@@ -115,6 +131,8 @@ export const dummyData = [
     brand: "citizen",
     gender: "male",
     picture: "/example-watch5.png",
+    description:
+      "The Citizen Eco-Drive Promaster is a reliable men’s watch powered by light. With a stainless steel case, blue rubber strap, and dive-ready design, it’s a perfect blend of innovation and durability.",
   },
   {
     id: 10,
@@ -128,6 +146,8 @@ export const dummyData = [
     brand: "seiko",
     gender: "male",
     picture: "/example-watch.png",
+    description:
+      "Inspired by classic cocktails, the Seiko Presage for men features a stainless steel case and a green leather strap. This stylish watch offers a unique aesthetic at an attractive discounted price.",
   },
   {
     id: 11,
@@ -141,6 +161,8 @@ export const dummyData = [
     brand: "apple",
     gender: "unisex",
     picture: "/example-watch4.png",
+    description:
+      "The Apple Watch Series 9 is a cutting-edge unisex smartwatch with a sleek aluminum case and white silicone strap. Ideal for tech-savvy individuals seeking functionality and style in one package.",
   },
   {
     id: 12,
@@ -154,6 +176,8 @@ export const dummyData = [
     brand: "tissot",
     gender: "male",
     picture: "/example-watch3.png",
+    description:
+      "The Tissot PRX is a modern men’s watch with a stainless steel case and silver metal strap. Combining Swiss craftsmanship with a minimalist design, it’s a versatile piece at a modest discount.",
   },
   {
     id: 13,
@@ -167,6 +191,8 @@ export const dummyData = [
     brand: "hublot",
     gender: "male",
     picture: "/example-watch.png",
+    description:
+      "The Hublot Big Bang is a bold luxury watch for men, featuring a ceramic case and black rubber strap. This statement piece exemplifies cutting-edge design and exclusivity for the discerning wearer.",
   },
   {
     id: 14,
@@ -180,5 +206,7 @@ export const dummyData = [
     brand: "longines",
     gender: "male",
     picture: "/example-watch2.png",
+    description:
+      "A sporty Longines HydroConquest for men, crafted from stainless steel with a black metal strap. Designed for water enthusiasts, this watch offers elegance and durability at a discounted rate.",
   },
 ];

@@ -27,6 +27,7 @@ export default function SingleProductItem({
   strap,
   hasDiscount,
   discount,
+  id,
 }: Props) {
   return (
     <div className="flex flex-col justify-evenly bg-stone-400 bg-opacity-10 ">
@@ -83,14 +84,11 @@ export default function SingleProductItem({
             className="uppercase px-2 py-5 flex justify-center gap-2 items-center h-[100%] w-[50%] tracking-wide text-center   hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"
           >
             <BsFillCartPlusFill className="text-2xl" />
-            {/* <p>Add to cart</p> */}
           </Link>
-          {/* <div className="flex flex-col border-l p-0 m-0 border-stone-300 border-opacity-50"></div> */}
           <Link
-            href={"/products"}
+            href={`/products/${id}`}
             className=" uppercase p-2 flex justify-center gap-2 items-center h-full w-[50%] tracking-wide text-center hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"
           >
-            {/* <p>Details</p> */}
             <MdRemoveRedEye className="text-2xl" />
           </Link>
         </div>

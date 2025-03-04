@@ -11,6 +11,11 @@ import Sort from "../_components/products/Sort";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Pagination from "../_components/Pagination";
 
+// export const metadata = {
+//   title: "Products",
+//   description: "explore watches choose favorite one",
+// };
+
 export default function page() {
   const [showFilters, setShowFilters] = useState(false);
 

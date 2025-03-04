@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 export default function BreadCrumb() {
-  const path = usePathname().split("/")?.[1];
+  const path = usePathname().split("/").slice(1);
   console.log(path);
 
   return (
@@ -12,7 +12,9 @@ export default function BreadCrumb() {
       <hr className="border-stone-400 border-opacity-30" />
       <div className="flex justify-center">
         <h3 className="uppercase text-stone-300 text-opacity-70 text-sm">
-          {path}
+          {path.length === 1
+            ? path
+            : `${path[0] + " / " + "Product Number " + path[1]}`}
         </h3>
       </div>
       <hr className="border-stone-400 border-opacity-30" />
