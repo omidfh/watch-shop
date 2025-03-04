@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { IoMdCart } from "react-icons/io";
+
+import { PiShoppingCartDuotone } from "react-icons/pi";
 
 export default function CartBtn() {
   return (
@@ -9,7 +10,7 @@ export default function CartBtn() {
         href={"/cart"}
         className="text-stone-300  hover:text-yellow-100  transition-all duration-200 ease-in-out"
       >
-        <IoMdCart className="text-4xl" />
+        <PiShoppingCartDuotone className="text-3xl" />
       </Link>
     </div>
   );
