@@ -11,10 +11,8 @@ export default function BreadCrumb() {
     <div className="w-[100%] flex flex-col  gap-10">
       <hr className="border-stone-400 border-opacity-30" />
       <div className="flex justify-center">
-        <h3 className="uppercase text-stone-300 text-opacity-70 text-sm">
-          {path.length === 1
-            ? path
-            : `${path[0] + " / " + "Product Number " + path[1]}`}
+        <h3 className="uppercase text-stone-300 text-opacity-70 text-sm tracking-wider">
+          {path.length === 1 ? path : `${path[0] + " / " + path[1]}`}
         </h3>
       </div>
       <hr className="border-stone-400 border-opacity-30" />
