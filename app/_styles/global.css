@@ -218,3 +218,20 @@ input[type="number"] {
     transform: rotate(360deg);
   }
 }
+
+#fileInput::file-selector-button {
+  background-color: transparent;
+  border: 1px solid aliceblue;
+  outline: none;
+  color: aliceblue;
+  border-radius: 3px;
+  padding: 0.4rem;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#fileInput::file-selector-button:hover {
+  background-color: aliceblue;
+  color: black;
+  transition: all 200ms ease-in-out;
+}

@@ -52,9 +52,9 @@ export default function CartItem({ price, name, id, quantity, image }: Props) {
       </div>
 
       {/* //* delete item btn */}
-      <div className="flex items-center p-1 hover:bg-stone-100 rounded-sm hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200 ">
+      <button className="flex items-center p-1 hover:bg-stone-100 rounded-sm hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200 ">
         <MdDelete className="text-xl text-stone-300 " />
-      </div>
+      </button>
     </div>
   );
 }
