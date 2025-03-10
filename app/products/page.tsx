@@ -1,27 +1,24 @@
-"use client";
-
-import React, { useState } from "react";
 import BreadCrumb from "../_components/products/BreadCrumb";
 import CatalogTitle from "../_components/products/CatalogTitle";
 import CatalogFilter from "../_components/products/CatalogFilter";
 import SingleProductItem from "../_components/products/SingleProductItem";
-import { dummyData } from "../dummyData";
-import { LuSquareMinus, LuSquarePlus } from "react-icons/lu";
+
 import Sort from "../_components/products/Sort";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Pagination from "../_components/Pagination";
+import { getWatches } from "../_lib/data-service";
+import PaginationParent from "../_components/products/PaginationParent";
+import FilterParent from "../_components/products/FilterParent";
 
-// export const metadata = {
-//   title: "Products",
-//   description: "explore watches choose favorite one",
-// };
+export const metadata = {
+  title: "Products",
+  description: "explore watches choose favorite one",
+};
 
-export default function page() {
-  const [showFilters, setShowFilters] = useState(false);
+export default async function page() {
+  const watches: SingleWatch[] = (await getWatches()) || [];
 
-  function toggleFilter() {
-    setShowFilters((filter) => !filter);
-  }
+  const totalPage = Math.ceil(watches?.length / 9);
+  console.log("total page is", totalPage);
+
   return (
     <div className="flex flex-col items-start justify-between gap-24">
       {/* //* BREADCRUMB */}
@@ -36,21 +33,15 @@ export default function page() {
           {/* //*filters */}
           <div className="flex flex-col min-w-[15%] gap-4">
             <Sort />
-            <div className="bg-stone-400 bg-opacity-10 ">
-              <button
-                onClick={() => toggleFilter()}
-                className="flex w-full justify-between gap-3 items-center p-4"
-              >
-                <p className="text-xl my-auto">Filters</p>
-                {showFilters ? <LuSquareMinus /> : <LuSquarePlus />}{" "}
-              </button>
-              {showFilters && <CatalogFilter isActive={showFilters} />}
-            </div>
+
+            <FilterParent>
+              <CatalogFilter />
+            </FilterParent>
           </div>
 
           {/* //* products */}
           <div className="grid md:grid-cols-3 sm:grid-cols-2 lg:gap-12 md:gap-4 sm:gap-2">
-            {dummyData.map((item) => (
+            {watches?.map((item) => (
               <SingleProductItem
                 key={item.id}
                 id={item.id}
@@ -68,7 +59,7 @@ export default function page() {
         </div>
       </div>
 
-      <Pagination totalPage={5} currentPage={2} />
+      <PaginationParent totalPage={totalPage} currentPage={1} />
     </div>
   );
 }

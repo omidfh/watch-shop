@@ -1,16 +1,29 @@
+import { getWatchElement } from "@/app/_lib/data-service";
 import React from "react";
 
 type Props = {
   label: string;
   type: string;
-  options: {
-    label: string;
-    value: string;
-  }[];
 };
 
-export default function FilterSelection({ label, type, options }: Props) {
-  console.log(options);
+type options = {
+  label: string;
+  value: string;
+};
+
+export default async function FilterSelection({ label, type }: Props) {
+  const selectionData = await getWatchElement(type);
+  console.log(selectionData);
+
+  const uniqueValues = Array.from(
+    new Set(selectionData?.map((item: any) => item[type].toLowerCase()))
+  );
+
+  const optionsData: options[] = uniqueValues.map((value) => ({
+    label: value.charAt(0).toUpperCase() + value.slice(1),
+    value: value,
+  }));
+
   return (
     <div className="flex flex-col justify-between gap-1 h-full">
       <label id="filterLabel" htmlFor={type}>
@@ -22,8 +35,10 @@ export default function FilterSelection({ label, type, options }: Props) {
           id={type}
           name={type}
         >
-          {options.map((option) => (
-            <option value={option?.value}>{option.label}</option>
+          {optionsData.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
           ))}
         </select>
       </div>

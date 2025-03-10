@@ -7,9 +7,14 @@ import {
 type Props = {
   totalPage: number | string;
   currentPage: number | string;
+  handleChange: () => void;
 };
 
-export default function Pagination({ totalPage, currentPage }: Props) {
+export default function Pagination({
+  totalPage,
+  currentPage,
+  handleChange,
+}: Props) {
   // Convert totalPage and currentPage to numbers
   const total = Number(totalPage);
   const current = Number(currentPage);
@@ -22,7 +27,7 @@ export default function Pagination({ totalPage, currentPage }: Props) {
       <div className="flex gap-3 items-center bg-stone-400 bg-opacity-10 text-xl p-2 rounded">
         {/* Previous Button */}
         <button
-          className="flex items-center p-1 disabled:opacity-50 "
+          className="flex items-center p-1 disabled:opacity-20 "
           disabled={current === 1}
         >
           <MdOutlineKeyboardArrowLeft />
@@ -44,7 +49,7 @@ export default function Pagination({ totalPage, currentPage }: Props) {
 
         {/* Next Button */}
         <button
-          className="flex items-center p-1 disabled:opacity-50"
+          className="flex items-center p-1 disabled:opacity-20"
           disabled={current === total}
         >
           <MdOutlineKeyboardArrowRight />

@@ -26,7 +26,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/loading.js"
+    "app/loading.js",
+    "app/_context/ShowFilterContext.js"
   ],
   "exclude": ["node_modules"]
 }
