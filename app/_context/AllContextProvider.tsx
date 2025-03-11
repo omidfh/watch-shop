@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { FilterProvider } from "./ShowFilterContext";
 import { PaginationProvider } from "./PaginationContext";
 

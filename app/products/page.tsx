@@ -13,8 +13,16 @@ export const metadata = {
   description: "explore watches choose favorite one",
 };
 
-export default async function page() {
-  const watches: SingleWatch[] = (await getWatches()) || [];
+export default async function page({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+  console.log("param is", searchParams);
+  const { page } = searchParams;
+  const watches: SingleWatch[] = (await getWatches(page)) || [];
 
   const totalPage = Math.ceil(watches?.length / 9);
   console.log("total page is", totalPage);

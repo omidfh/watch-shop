@@ -1,7 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import Link from "next/link";
-import { BsFillCartPlusFill, BsWatch } from "react-icons/bs";
+import { BsFillCartPlusFill } from "react-icons/bs";
 import { PiGearFineFill, PiWatchFill } from "react-icons/pi";
 import { HiMiniSwatch } from "react-icons/hi2";
 import { MdRemoveRedEye } from "react-icons/md";
@@ -53,10 +53,8 @@ export default function SingleProductItem({
 
         <div className="flex justify-center px-3 pb-4  ">
           <Image
-            // src={`${image}`}
             src={image}
             alt="watch-photo"
-            // fill
             width={250}
             height={200}
             className="object-contain  transition-transform duration-300 hover:scale-110"

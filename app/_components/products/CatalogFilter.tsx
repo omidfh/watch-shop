@@ -1,29 +1,6 @@
 import FilterSelection from "./FilterSelection";
-import { dummyData } from "@/app/dummyData";
 
 export default function CatalogFilter() {
-  // const { show } = useToggleFilter();
-  // if (!show) return;
-
-  function getSelections(filterType: string) {
-    const uniqueValues = dummyData.reduce((acc, item) => {
-      const value = item[filterType as keyof (typeof dummyData)[0]];
-      if (!acc.includes(value)) {
-        acc.push(value);
-      }
-      return acc;
-    }, [] as any[]);
-
-    const data = uniqueValues.map((value) => ({
-      label: String(value).charAt(0).toUpperCase() + String(value).slice(1),
-      value: String(value),
-    }));
-
-    data.unshift({ label: "All", value: "all" });
-
-    return data;
-  }
-
   return (
     <div className="flex lg:flex-col md:flex-row sm:flex-row gap-10 rounded-md p-6  ">
       {/* //*part 1 */}
@@ -57,7 +34,6 @@ export default function CatalogFilter() {
       {/* //*part 2 */}
 
       {/* //* Brand  */}
-      {/* Brand */}
       <FilterSelection label="Brand" type="brand" />
 
       {/* //* Color */}
@@ -71,6 +47,13 @@ export default function CatalogFilter() {
 
       {/* //* Strap Type */}
       <FilterSelection label="Strap Type" type="strap" />
+
+      <button
+        type="submit"
+        className="bg-yellow-100 text-center  bg-opacity-90 p-3 tracking-wider font-semibold  text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500"
+      >
+        Apply Filter
+      </button>
     </div>
   );
   // </div>

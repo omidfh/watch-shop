@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 // Create the context
 const PaginationContext = createContext();
@@ -10,19 +10,23 @@ export function PaginationProvider({ children }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [pageNumber, setPageNumber] = useState(1);
+  const path = usePathname();
 
-  // Sync pageNumber with the URL query param on initial load
+  console.log(path);
+
   useEffect(() => {
-    const page = searchParams.get("page");
-    if (page) {
-      setPageNumber(Number(page)); // Set the pageNumber from the URL
+    if (path === "/products") {
+      const page = searchParams.get("page");
+      if (page) {
+        setPageNumber(Number(page));
+      }
+      if (!page || Number(page) === 1) {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("page", 1);
+        router.push(`?${params.toString()}`, { scroll: false });
+      }
     }
-    if (!page || Number(page) === 1) {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("page", 1); // Update the "page" query param
-      router.push(`?${params.toString()}`, { scroll: false }); // Update the URL
-    }
-  }, [searchParams]);
+  }, [searchParams, path]);
 
   // Function to update the page number and URL query param
   const handleChangePage = (number) => {
