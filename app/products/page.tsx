@@ -25,7 +25,8 @@ export default async function page({ searchParams }: { searchParams: Params }) {
     console.error("Error parsing filters:", error);
   }
 
-  const watches: SingleWatch[] = (await getWatches(page, parsedFilters)) || [];
+  const watches: SingleWatch[] =
+    (await getWatches(page, searchParams.sort, parsedFilters)) || [];
 
   const totalPage = Math.ceil(watches?.length / 9);
 

@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { FilterProvider } from "./ShowFilterContext";
 import { PaginationProvider } from "./PaginationContext";
 import { SetFilterProvider } from "./FilterContextProvider";
+import { SortingProvider } from "./SortContextProvider";
 
 export default function AllContextProvider({
   children,
@@ -9,10 +10,12 @@ export default function AllContextProvider({
   children: ReactNode;
 }) {
   return (
-    <SetFilterProvider>
-      <FilterProvider>
-        <PaginationProvider>{children}</PaginationProvider>
-      </FilterProvider>
-    </SetFilterProvider>
+    <SortingProvider>
+      <SetFilterProvider>
+        <FilterProvider>
+          <PaginationProvider>{children}</PaginationProvider>
+        </FilterProvider>
+      </SetFilterProvider>
+    </SortingProvider>
   );
 }

@@ -1,6 +1,7 @@
 import { useSearchParams } from "next/navigation";
 import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
+import { sortingProducts } from "../_helpers/sortingProducts";
 
 // export async function getWatches(
 //   pageNumber: number | string,
@@ -22,6 +23,7 @@ import { revalidatePath } from "next/cache";
 
 export async function getWatches(
   pageNumber: number | string,
+  sort: string,
   filters?: Filters
 ): Promise<SingleWatch[] | null> {
   console.log(filters);
@@ -58,12 +60,13 @@ export async function getWatches(
       throw new Error("Watches could not be loaded at the moment");
     }
 
-    return watches;
+    revalidatePath("/products");
+    const sortedData = sortingProducts(sort, watches);
+    return sortedData;
   } catch (error) {
     console.error("Fetch error:", error);
     throw new Error("Watches could not be loaded at the moment");
   }
-  revalidatePath("/products");
 }
 
 export async function getWatchElement(colName1: string) {

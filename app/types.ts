@@ -24,5 +24,6 @@ interface Filters {
 
 interface Params {
   page: string | number;
-  filters: string;
+  filters?: string;
+  sort: string;
 }
