@@ -14,11 +14,12 @@ interface SingleWatch {
 }
 
 interface Filters {
-  price: { min: string | number; max: string | number };
-  material: string;
-  strap: string;
-  color: string;
-  brand: string;
+  price?: { min: string | number; max: string | number };
+  material?: string;
+  strap?: string;
+  color?: string;
+  brand?: string;
+  gender?: string;
 }
 
 interface Params {

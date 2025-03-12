@@ -20,7 +20,7 @@ export default async function FilterSelection({
   const selectionData = await getWatchElement(type);
 
   const uniqueValues = Array.from(
-    new Set(selectionData?.map((item: any) => item[type].toLowerCase()))
+    new Set(selectionData?.map((item: any) => item[type]))
   );
 
   const optionsData: options[] = [

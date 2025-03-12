@@ -16,7 +16,16 @@ export const metadata = {
 export default async function page({ searchParams }: { searchParams: Params }) {
   const { page } = searchParams;
 
-  const watches: SingleWatch[] = (await getWatches(page)) || [];
+  let parsedFilters: Filters = {};
+  try {
+    if (searchParams?.filters) {
+      parsedFilters = JSON.parse(decodeURIComponent(searchParams.filters));
+    }
+  } catch (error) {
+    console.error("Error parsing filters:", error);
+  }
+
+  const watches: SingleWatch[] = (await getWatches(page, parsedFilters)) || [];
 
   const totalPage = Math.ceil(watches?.length / 9);
 

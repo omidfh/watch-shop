@@ -2,9 +2,14 @@
 import FilterSelection from "./FilterSelection";
 import ChangeFilterButton from "./ChangeFilterButton";
 
-export default function CatalogFilter({ searchParams }) {
+export default function CatalogFilter({
+  searchParams,
+}: {
+  searchParams: Params;
+}) {
   // Parse the filters from the URL
-  let parsedFilters: Filters | {} = {};
+  let parsedFilters: Filters = {};
+
   try {
     if (searchParams?.filters) {
       parsedFilters = JSON.parse(decodeURIComponent(searchParams.filters));
@@ -12,6 +17,7 @@ export default function CatalogFilter({ searchParams }) {
   } catch (error) {
     console.error("Error parsing filters:", error);
   }
+  console.log("parsed", parsedFilters);
   return (
     <form className="flex lg:flex-col md:flex-row sm:flex-row gap-10 rounded-md p-6">
       {/* //*part 1 */}
