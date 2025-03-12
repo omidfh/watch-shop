@@ -5,7 +5,6 @@ import React from "react";
 
 export default function BreadCrumb() {
   const path = usePathname().split("/").slice(1);
-  console.log(path);
 
   return (
     <div className="w-[100%] flex flex-col  gap-10">

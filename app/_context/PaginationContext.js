@@ -12,8 +12,6 @@ export function PaginationProvider({ children }) {
   const [pageNumber, setPageNumber] = useState(1);
   const path = usePathname();
 
-  console.log(path);
-
   useEffect(() => {
     if (path === "/products") {
       const page = searchParams.get("page");

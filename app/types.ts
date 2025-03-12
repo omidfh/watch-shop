@@ -12,3 +12,16 @@ interface SingleWatch {
   picture: string;
   description: string;
 }
+
+interface Filters {
+  price: { min: string | number; max: string | number };
+  material: string;
+  strap: string;
+  color: string;
+  brand: string;
+}
+
+interface Params {
+  page: string | number;
+  filters: string;
+}

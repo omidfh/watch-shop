@@ -13,19 +13,12 @@ export const metadata = {
   description: "explore watches choose favorite one",
 };
 
-export default async function page({
-  params,
-  searchParams,
-}: {
-  params: { slug: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
-  console.log("param is", searchParams);
+export default async function page({ searchParams }: { searchParams: Params }) {
   const { page } = searchParams;
+
   const watches: SingleWatch[] = (await getWatches(page)) || [];
 
   const totalPage = Math.ceil(watches?.length / 9);
-  console.log("total page is", totalPage);
 
   return (
     <div className="flex flex-col items-start justify-between gap-24">
@@ -42,8 +35,8 @@ export default async function page({
           <div className="flex flex-col min-w-[15%] gap-4">
             <Sort />
 
-            <FilterParent>
-              <CatalogFilter />
+            <FilterParent searchParams={searchParams}>
+              <CatalogFilter searchParams={searchParams} />
             </FilterParent>
           </div>
 

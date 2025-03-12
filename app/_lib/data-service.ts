@@ -15,8 +15,6 @@ export async function getWatches(pageNumber: number | string) {
 }
 
 export async function getWatchElement(colName1: string) {
-  console.log("functionRun");
-  console.log("col name is", colName1);
   try {
     const { data, error } = await supabase.from("watches").select(colName1);
 

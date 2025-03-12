@@ -4,6 +4,7 @@ import React from "react";
 type Props = {
   label: string;
   type: string;
+  defaultValue?: string;
 };
 
 type options = {
@@ -11,18 +12,24 @@ type options = {
   value: string;
 };
 
-export default async function FilterSelection({ label, type }: Props) {
+export default async function FilterSelection({
+  label,
+  type,
+  defaultValue = "",
+}: Props) {
   const selectionData = await getWatchElement(type);
-  console.log(selectionData);
 
   const uniqueValues = Array.from(
     new Set(selectionData?.map((item: any) => item[type].toLowerCase()))
   );
 
-  const optionsData: options[] = uniqueValues.map((value) => ({
-    label: value.charAt(0).toUpperCase() + value.slice(1),
-    value: value,
-  }));
+  const optionsData: options[] = [
+    { label: "All", value: "" }, // Add "All" option
+    ...uniqueValues.map((value) => ({
+      label: value.charAt(0).toUpperCase() + value.slice(1),
+      value: value,
+    })),
+  ];
 
   return (
     <div className="flex flex-col justify-between gap-1 h-full">
@@ -34,6 +41,7 @@ export default async function FilterSelection({ label, type }: Props) {
           className="bg-transparent w-full focus:outline-none"
           id={type}
           name={type}
+          defaultValue={defaultValue}
         >
           {optionsData.map((option) => (
             <option key={option.value} value={option.value}>

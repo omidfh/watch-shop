@@ -10,10 +10,8 @@ type Props = {
 };
 
 export default function PaginationParent({ totalPage, currentPage }: Props) {
-  const { pageNumber, handleChangePage } = usePaginationProvider();
-  function test() {
-    console.log("test is ok");
-  }
+  const { handleChangePage } = usePaginationProvider();
+
   return (
     <Pagination
       totalPage={totalPage}

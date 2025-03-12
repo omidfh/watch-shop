@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { FilterProvider } from "./ShowFilterContext";
 import { PaginationProvider } from "./PaginationContext";
+import { SetFilterProvider } from "./FilterContextProvider";
 
 export default function AllContextProvider({
   children,
@@ -8,8 +9,10 @@ export default function AllContextProvider({
   children: ReactNode;
 }) {
   return (
-    <FilterProvider>
-      <PaginationProvider>{children}</PaginationProvider>
-    </FilterProvider>
+    <SetFilterProvider>
+      <FilterProvider>
+        <PaginationProvider>{children}</PaginationProvider>
+      </FilterProvider>
+    </SetFilterProvider>
   );
 }
