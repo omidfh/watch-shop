@@ -9,7 +9,7 @@ const SortingContext = createContext();
 export function SortingProvider({ children }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [sort, setSort] = useState("random");
+  const [sort, setSort] = useState("");
   const path = usePathname();
 
   useEffect(() => {

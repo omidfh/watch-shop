@@ -13,6 +13,11 @@ interface SingleWatch {
   description: string;
 }
 
+interface WatchesDataType {
+  data: SingleWatch[];
+  totalPages: number | string;
+}
+
 interface Filters {
   price?: { min: string | number; max: string | number };
   material?: string;

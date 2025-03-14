@@ -18,7 +18,7 @@ export function sortingProducts(sortType: string, watches: SingleWatch[]) {
       }
       break;
 
-    case "discount-percent-asc":
+    case "discount-percent-desc":
       // Sort by discount percentage ascending (low to high)
       sortedWatches.sort((a, b) => {
         const discountA = a.hasDiscount ? a.discount : 0;
@@ -27,7 +27,7 @@ export function sortingProducts(sortType: string, watches: SingleWatch[]) {
       });
       break;
 
-    case "discount-percent-desc":
+    case "discount-percent-asc":
       // Sort by discount percentage descending (high to low)
       sortedWatches.sort((a, b) => {
         const discountA = a.hasDiscount ? a.discount : 0;

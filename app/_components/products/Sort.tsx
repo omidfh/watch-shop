@@ -1,11 +1,12 @@
 "use client";
 
 import { useSortingProvider } from "@/app/_context/SortContextProvider";
-import React, { EventHandler, ReactEventHandler, useTransition } from "react";
+import React from "react";
 import Loader from "../loader/page";
+import { useTransition } from "react";
 
-export default function Sort() {
-  const { sort, handleChangeSort } = useSortingProvider();
+export default function Sort({ sort }: { sort: string }) {
+  const { handleChangeSort } = useSortingProvider();
   const [isPending, startTransition] = useTransition();
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -16,6 +17,8 @@ export default function Sort() {
   }
 
   if (isPending) return <Loader />;
+
+  console.log(sort);
 
   return (
     <div className="flex flex-col justify-end gap-10 p-4 bg-stone-400 bg-opacity-10">

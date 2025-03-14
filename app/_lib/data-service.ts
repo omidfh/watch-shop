@@ -1,4 +1,3 @@
-import { useSearchParams } from "next/navigation";
 import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { sortingProducts } from "../_helpers/sortingProducts";
@@ -24,16 +23,14 @@ import { sortingProducts } from "../_helpers/sortingProducts";
 export async function getWatches(
   pageNumber: number | string,
   sort: string,
+  itemsPerPage: number,
   filters?: Filters
-): Promise<SingleWatch[] | null> {
+): Promise<WatchesDataType> {
   console.log(filters);
   try {
     let query = supabase.from("watches").select("*");
 
-    // Pagination: Fetch 10 items per page
-    const start = (Number(pageNumber) - 1) * 10;
-    const end = start + 9;
-    query = query.range(start, end);
+    // query = query.range(start, end);
 
     // Apply filters dynamically
     if (filters) {
@@ -51,8 +48,6 @@ export async function getWatches(
       }
     }
 
-    console.log(query);
-
     const { data: watches, error } = await query;
 
     if (error) {
@@ -62,7 +57,18 @@ export async function getWatches(
 
     revalidatePath("/products");
     const sortedData = sortingProducts(sort, watches);
-    return sortedData;
+    // console.log("data", sortedData);
+
+    // Pagination: Fetch 9 items per page
+    const start = (Number(pageNumber) - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+
+    const paginatedData = {
+      data: sortedData.slice(start, end),
+      totalPages: sortedData.length,
+    };
+
+    return paginatedData;
   } catch (error) {
     console.error("Fetch error:", error);
     throw new Error("Watches could not be loaded at the moment");

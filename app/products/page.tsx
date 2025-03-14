@@ -8,13 +8,15 @@ import { getWatches } from "../_lib/data-service";
 import PaginationParent from "../_components/products/PaginationParent";
 import FilterParent from "../_components/products/FilterParent";
 
+const ITEMS_PER_PAGE = 9;
+
 export const metadata = {
   title: "Products",
   description: "explore watches choose favorite one",
 };
 
 export default async function page({ searchParams }: { searchParams: Params }) {
-  const { page } = searchParams;
+  const { page, sort } = searchParams;
 
   let parsedFilters: Filters = {};
   try {
@@ -25,10 +27,15 @@ export default async function page({ searchParams }: { searchParams: Params }) {
     console.error("Error parsing filters:", error);
   }
 
-  const watches: SingleWatch[] =
-    (await getWatches(page, searchParams.sort, parsedFilters)) || [];
+  const watches: WatchesDataType =
+    (await getWatches(
+      page,
+      searchParams.sort,
+      ITEMS_PER_PAGE,
+      parsedFilters
+    )) || [];
 
-  const totalPage = Math.ceil(watches?.length / 9);
+  const totalPage = Math.ceil(Number(watches?.totalPages) / 9);
 
   return (
     <div className="flex flex-col items-start justify-between gap-24">
@@ -43,7 +50,7 @@ export default async function page({ searchParams }: { searchParams: Params }) {
         <div className="flex lg:flex-row md:flex-col sm:flex-col sm:gap-8 lg:items-start md:items-center justify-center w-full">
           {/* //*filters */}
           <div className="flex flex-col min-w-[15%] gap-4">
-            <Sort />
+            <Sort sort={sort} />
 
             <FilterParent searchParams={searchParams}>
               <CatalogFilter searchParams={searchParams} />
@@ -52,7 +59,7 @@ export default async function page({ searchParams }: { searchParams: Params }) {
 
           {/* //* products */}
           <div className="grid md:grid-cols-3 sm:grid-cols-2 lg:gap-12 md:gap-4 sm:gap-2">
-            {watches?.map((item) => (
+            {watches?.data?.map((item) => (
               <SingleProductItem
                 key={item.id}
                 id={item.id}
@@ -70,7 +77,7 @@ export default async function page({ searchParams }: { searchParams: Params }) {
         </div>
       </div>
 
-      <PaginationParent totalPage={totalPage} currentPage={1} />
+      <PaginationParent totalPage={totalPage} currentPage={page} />
     </div>
   );
 }

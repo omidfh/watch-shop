@@ -32,6 +32,10 @@ export function PaginationProvider({ children }) {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", number.toString()); // Update the "page" query param
     router.push(`?${params.toString()}`, { scroll: false }); // Update the URL
+    window.scrollTo({
+      top: 300,
+      behavior: "smooth",
+    });
   };
 
   return (
