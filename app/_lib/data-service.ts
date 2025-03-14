@@ -2,24 +2,6 @@ import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { sortingProducts } from "../_helpers/sortingProducts";
 
-// export async function getWatches(
-//   pageNumber: number | string,
-//   filters?: Filters
-// ) {
-//   console.log(filters);
-//   try {
-//     const { data: watches, error } = await supabase
-//       .from("watches")
-//       .select("*")
-//       .range(0 * Number(pageNumber), 9 * Number(pageNumber))
-//       .eq("brand", filters?.brand);
-//     return watches;
-//   } catch (error) {
-//     console.log(error);
-//     throw new Error("Watches could not be loaded at the moment");
-//   }
-// }
-
 export async function getWatches(
   pageNumber: number | string,
   sort: string,
@@ -29,8 +11,6 @@ export async function getWatches(
   console.log(filters);
   try {
     let query = supabase.from("watches").select("*");
-
-    // query = query.range(start, end);
 
     // Apply filters dynamically
     if (filters) {
@@ -85,5 +65,27 @@ export async function getWatchElement(colName1: string) {
     console.log(err);
 
     throw new Error("watch specific could not be loaded");
+  }
+}
+
+export async function getSingleWatch(
+  watchId: string | number
+): Promise<SingleWatch | null> {
+  try {
+    const { data: watch, error } = await supabase
+      .from("watches")
+      .select("*") // Select all columns
+      .eq("id", watchId)
+      .single(); // Use .single() to get a single object
+
+    if (error) {
+      console.error("Supabase error:", error);
+      return null;
+    }
+
+    return watch;
+  } catch (err) {
+    console.error("Error fetching watch:", err);
+    return null; // Return null in case of error
   }
 }

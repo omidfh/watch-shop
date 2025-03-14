@@ -1,19 +1,15 @@
-"use client";
-
 import BreadCrumb from "@/app/_components/products/BreadCrumb";
 import CompanyServices from "@/app/_components/SingleProduct/CompanyServices";
 import ProductInfo from "@/app/_components/SingleProduct/ProductInfo";
 import SingleProductImage from "@/app/_components/SingleProduct/SingleProductImage";
+import { getSingleWatch } from "@/app/_lib/data-service";
 import { dummyData } from "@/app/dummyData";
-import { useParams } from "next/navigation";
 import React from "react";
 
-export default function page() {
-  const { productId } = useParams();
+export default async function page({ params }: { params: Params }) {
+  const { productId } = params;
 
-  const selectedProduct: SingleWatch = dummyData.find(
-    (item) => item.id === Number(productId)
-  ) || {
+  const selectedProduct = (await getSingleWatch(productId)) || {
     id: 0,
     name: "",
     price: 0,

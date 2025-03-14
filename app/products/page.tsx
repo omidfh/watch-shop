@@ -15,7 +15,11 @@ export const metadata = {
   description: "explore watches choose favorite one",
 };
 
-export default async function page({ searchParams }: { searchParams: Params }) {
+export default async function page({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const { page, sort } = searchParams;
 
   let parsedFilters: Filters = {};

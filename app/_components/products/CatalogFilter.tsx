@@ -5,7 +5,7 @@ import ChangeFilterButton from "./ChangeFilterButton";
 export default function CatalogFilter({
   searchParams,
 }: {
-  searchParams: Params;
+  searchParams: SearchParams;
 }) {
   // Parse the filters from the URL
   let parsedFilters: Filters = {};

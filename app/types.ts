@@ -1,5 +1,5 @@
 interface SingleWatch {
-  id: number;
+  id: number | string;
   name: string;
   price: number;
   hasDiscount: boolean;
@@ -27,8 +27,12 @@ interface Filters {
   gender?: string;
 }
 
-interface Params {
+interface SearchParams {
   page: string | number;
   filters?: string;
   sort: string;
+}
+
+interface Params {
+  productId: string | number;
 }
