@@ -10,7 +10,7 @@ type Props = {
   name: string;
   price: string | number;
   id: string | number;
-  image: StaticImageData | string;
+  picture: StaticImageData | string;
   brand: string;
   material: string;
   strap: string;
@@ -21,14 +21,14 @@ type Props = {
 export default function SingleProductItem({
   name,
   price,
-  image,
+  picture,
   brand,
   material,
   strap,
   hasDiscount,
   discount,
   id,
-}: Props) {
+}: SingleWatch) {
   return (
     <div className="flex flex-col justify-evenly bg-stone-400 bg-opacity-10 ">
       <div className="flex flex-col justify-between h-full">
@@ -53,7 +53,7 @@ export default function SingleProductItem({
 
         <div className="flex justify-center px-3 pb-4  ">
           <Image
-            src={image}
+            src={picture}
             alt="watch-photo"
             width={250}
             height={200}

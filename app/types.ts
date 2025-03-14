@@ -6,11 +6,11 @@ interface SingleWatch {
   discount: number;
   material: string;
   strap: string;
-  color: string;
+  color?: string;
   brand: string;
-  gender: string;
+  gender?: string;
   picture: string;
-  description: string;
+  description?: string;
 }
 
 interface WatchesDataType {

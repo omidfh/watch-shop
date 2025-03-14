@@ -65,7 +65,7 @@ export default async function page({ searchParams }: { searchParams: Params }) {
                 id={item.id}
                 name={item.name}
                 price={item.price}
-                image={item.picture}
+                picture={item.picture}
                 brand={item.brand}
                 material={item.material}
                 strap={item.strap}
