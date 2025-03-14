@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 // Create the context
 const FilterContext = createContext();

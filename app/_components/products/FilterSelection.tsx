@@ -32,7 +32,7 @@ export default async function FilterSelection({
   ];
 
   return (
-    <div className="flex flex-col justify-between gap-1 h-full">
+    <div className="flex w-full flex-col justify-between gap-1 h-full">
       <label id="filterLabel" htmlFor={type}>
         {label}
       </label>

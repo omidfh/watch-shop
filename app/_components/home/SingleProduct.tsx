@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import Link from "next/link";
+import defaultWatchPic from "@/public/watch-default.jpg";
 
 type Props = {
   name: string;
@@ -20,7 +21,7 @@ export default function SingleProduct({ name, price, image }: Props) {
 
         <div className="flex justify-center px-3 pb-4">
           <Image
-            src={image}
+            src={image || defaultWatchPic}
             alt="watch-photo"
             className="object-contain transition-transform duration-300 hover:scale-110"
             width={300}

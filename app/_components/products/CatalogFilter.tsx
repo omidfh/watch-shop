@@ -1,8 +1,10 @@
 // This can be a server component
 import FilterSelection from "./FilterSelection";
 import ChangeFilterButton from "./ChangeFilterButton";
+import FilterPriceFilter from "./FilterPriceFilter";
+import { getWatchElement } from "@/app/_lib/data-service";
 
-export default function CatalogFilter({
+export default async function CatalogFilter({
   searchParams,
 }: {
   searchParams: SearchParams;
@@ -17,13 +19,27 @@ export default function CatalogFilter({
   } catch (error) {
     console.error("Error parsing filters:", error);
   }
-  console.log("parsed", parsedFilters);
+
+  const prices = await getWatchElement("price");
+  // const biggestPrice = prices.map((item) => {
+  //   let max;
+  // });
+  let biggestPrice = prices?.[0]?.price; // Assume the first price is the biggest initially
+
+  for (let i = 1; i < prices?.length; i++) {
+    if (prices?.[i].price > biggestPrice) {
+      biggestPrice = prices?.[i].price;
+    }
+  }
+
+  console.log(biggestPrice);
+
   return (
-    <form className="flex lg:flex-col md:flex-row sm:flex-row gap-10 rounded-md p-6">
+    <form className="flex w-full lg:flex-col md:flex-row sm:flex-row gap-10 rounded-md p-6">
       {/* //*part 1 */}
       <div className="flex w-full">
         {/* //* price */}
-        <div className="flex flex-col justify-between gap-1 h-full w-full">
+        {/* <div className="flex flex-col justify-between gap-1 h-full w-full">
           <label id="filterLabel" htmlFor="price">
             Price
           </label>
@@ -49,7 +65,12 @@ export default function CatalogFilter({
               <p className="text-center text-stone-300 text-opacity-50">$</p>
             </div>
           </div>
-        </div>
+        </div> */}
+        <FilterPriceFilter
+          searchParams={searchParams}
+          parsedFilters={parsedFilters}
+          biggestPrice={biggestPrice}
+        />
       </div>
 
       {/* //*part 2 */}

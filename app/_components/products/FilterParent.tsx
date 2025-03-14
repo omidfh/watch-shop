@@ -45,7 +45,9 @@ export default function FilterParent({
         </div>
         {show ? <LuSquareMinus size={20} /> : <LuSquarePlus size={20} />}
       </button>
-      <div className={`flex ${show ? "activeFilter" : "inactiveFilter"}`}>
+      <div
+        className={`flex w-full ${show ? "activeFilter" : "inactiveFilter"}`}
+      >
         {children}
       </div>
     </div>

@@ -4,6 +4,7 @@ import React from "react";
 // import image from "@/public/example-watch3.png";
 import { LuMinus, LuPlus } from "react-icons/lu";
 import { MdDelete } from "react-icons/md";
+import defaultWatchPic from "@/public/watch-default.jpg";
 
 interface Props {
   price: string | number;
@@ -19,7 +20,7 @@ export default function CartItem({ price, name, id, quantity, image }: Props) {
       {/* //* image */}
       <div className="flex rounded-md border w-19 p-1">
         <Image
-          src={image}
+          src={image || defaultWatchPic}
           alt="image-photo"
           width={65}
           height={65}

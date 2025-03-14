@@ -53,7 +53,7 @@ export default async function page({
       <div className="flex w-full  justify-center mx-auto">
         <div className="flex lg:flex-row md:flex-col sm:flex-col sm:gap-8 lg:items-start md:items-center justify-center w-full">
           {/* //*filters */}
-          <div className="flex flex-col min-w-[15%] gap-4">
+          <div className="flex flex-col w-[18%] gap-4">
             <Sort sort={sort} />
 
             <FilterParent searchParams={searchParams}>
@@ -62,7 +62,7 @@ export default async function page({
           </div>
 
           {/* //* products */}
-          <div className="grid md:grid-cols-3 sm:grid-cols-2 lg:gap-12 md:gap-4 sm:gap-2">
+          <div className="grid md:grid-cols-3 sm:grid-cols-2 lg:gap-12 md:gap-4 sm:gap-2 min-w-[70%]">
             {watches?.data?.map((item) => (
               <SingleProductItem
                 key={item.id}

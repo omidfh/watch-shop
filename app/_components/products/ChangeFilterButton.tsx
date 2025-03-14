@@ -4,7 +4,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useTransition } from "react";
 import { useFormStatus } from "react-dom";
 import Loader from "../loader/page";
-import { revalidatePath } from "next/cache";
 
 interface Filters {
   price?: {
@@ -120,7 +119,7 @@ export default function ChangeFilterButton({
         type="submit"
         className={`${
           !hasActiveFilters && "w-full"
-        } bg-yellow-100  text-center bg-opacity-90 p-3 tracking-wider font-semibold text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500`}
+        } bg-yellow-100  text-center bg-opacity-90 px-2 py-4 tracking-wider font-semibold text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500`}
       >
         Apply Filters
       </button>
@@ -128,7 +127,7 @@ export default function ChangeFilterButton({
         <button
           onClick={handleReset}
           type="reset"
-          className="bg-yellow-100 text-center text-stone-300 bg-opacity-10 p-3 tracking-wider font-semibold  hover:text-black hover:bg-opacity-90 hover:transition-all ease-in-out duration-500"
+          className="bg-yellow-100 text-center text-stone-300 bg-opacity-10 px-2 py-4 tracking-wider font-semibold  hover:text-black hover:bg-opacity-90 hover:transition-all ease-in-out duration-500"
         >
           Reset Filters
         </button>

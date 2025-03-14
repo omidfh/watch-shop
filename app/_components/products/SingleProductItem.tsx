@@ -5,6 +5,7 @@ import { BsFillCartPlusFill } from "react-icons/bs";
 import { PiGearFineFill, PiWatchFill } from "react-icons/pi";
 import { HiMiniSwatch } from "react-icons/hi2";
 import { MdRemoveRedEye } from "react-icons/md";
+import defaultWatchPic from "@/public/watch-default.jpg";
 
 type Props = {
   name: string;
@@ -53,7 +54,7 @@ export default function SingleProductItem({
 
         <div className="flex justify-center px-3 pb-4  ">
           <Image
-            src={picture}
+            src={picture || defaultWatchPic}
             alt="watch-photo"
             width={250}
             height={200}
