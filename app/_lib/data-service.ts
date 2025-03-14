@@ -8,7 +8,6 @@ export async function getWatches(
   itemsPerPage: number,
   filters?: Filters
 ): Promise<WatchesDataType> {
-  console.log(filters);
   try {
     let query = supabase.from("watches").select("*");
 

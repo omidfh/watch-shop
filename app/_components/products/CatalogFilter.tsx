@@ -4,6 +4,10 @@ import ChangeFilterButton from "./ChangeFilterButton";
 import FilterPriceFilter from "./FilterPriceFilter";
 import { getWatchElement } from "@/app/_lib/data-service";
 
+interface PricesType {
+  price: {};
+}
+
 export default async function CatalogFilter({
   searchParams,
 }: {
@@ -21,18 +25,9 @@ export default async function CatalogFilter({
   }
 
   const prices = await getWatchElement("price");
-  // const biggestPrice = prices.map((item) => {
-  //   let max;
-  // });
-  let biggestPrice = prices?.[0]?.price; // Assume the first price is the biggest initially
-
-  for (let i = 1; i < prices?.length; i++) {
-    if (prices?.[i].price > biggestPrice) {
-      biggestPrice = prices?.[i].price;
-    }
-  }
-
-  console.log(biggestPrice);
+  const biggestPrice = Math.max(
+    ...prices.map((item: WatchElement) => item.price ?? 0)
+  );
 
   return (
     <form className="flex w-full lg:flex-col md:flex-row sm:flex-row gap-10 rounded-md p-6">

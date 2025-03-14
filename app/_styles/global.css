@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom scrollbar styling */
+/* For Webkit browsers (Chrome, Safari, newer versions of Opera) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+  border-color: #ffd700;
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #111;
+}
+
+/* For Edge */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* For scrollbar corner */
+::-webkit-scrollbar-corner {
+  background: #111;
+}
+
 /* Apply Next.js font variable */
 html {
   background-color: black;

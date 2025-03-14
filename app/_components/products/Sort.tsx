@@ -11,14 +11,11 @@ export default function Sort({ sort }: { sort: string }) {
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     startTransition(() => {
-      console.log(e.target.value);
       handleChangeSort(e.target.value);
     });
   }
 
   if (isPending) return <Loader />;
-
-  console.log(sort);
 
   return (
     <div className="flex flex-col justify-end gap-10 p-4 bg-stone-400 bg-opacity-10">

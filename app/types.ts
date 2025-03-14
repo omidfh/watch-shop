@@ -36,3 +36,16 @@ interface SearchParams {
 interface Params {
   productId: string | number;
 }
+
+interface WatchElement {
+  name?: string;
+  price?: number;
+  hasDiscount?: boolean;
+  discount?: number;
+  material?: string;
+  strap?: string;
+  color?: string;
+  brand?: string;
+  gender?: string;
+  description?: string;
+}
