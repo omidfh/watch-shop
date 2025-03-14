@@ -22,12 +22,14 @@ export default function ProductInfo({
               selectedProduct.hasDiscount ? "text-red-300" : "text-yellow-100"
             } ${selectedProduct.hasDiscount ? "line-through" : ""}`}
           >
-            $ {selectedProduct.price}
+            $ {selectedProduct.price.toLocaleString()}
           </p>
           {selectedProduct.hasDiscount && (
             <p className="text-green-200 text-lg">
               ${" "}
-              {Number(selectedProduct.price) - Number(selectedProduct.discount)}
+              {(
+                Number(selectedProduct.price) - Number(selectedProduct.discount)
+              ).toLocaleString()}
             </p>
           )}
         </div>

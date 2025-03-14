@@ -15,7 +15,7 @@ export default function SingleProduct({ name, price, image }: Props) {
       <div className="flex flex-col">
         <div className="flex justify-between items-center px-4 py-2">
           <p className="max-w-[50%] text-stone-300 text-md">{name}</p>
-          <p className="text-md text-yellow-100">$ {price}</p>
+          <p className="text-md text-yellow-100">$ {price.toLocaleString()}</p>
         </div>
 
         <div className="flex justify-center px-3 pb-4">

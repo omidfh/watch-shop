@@ -41,11 +41,11 @@ export default function SingleProductItem({
                 hasDiscount ? "text-red-300" : "text-yellow-100"
               } ${hasDiscount ? "line-through" : ""}`}
             >
-              $ {price}
+              $ {price.toLocaleString()}
             </p>
             {hasDiscount && (
               <p className="text-green-200">
-                $ {Number(price) - Number(discount)}
+                $ {(Number(price) - Number(discount)).toLocaleString()}
               </p>
             )}
           </div>
