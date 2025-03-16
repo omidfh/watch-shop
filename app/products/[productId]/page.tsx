@@ -1,9 +1,11 @@
 import BreadCrumb from "@/app/_components/products/BreadCrumb";
+import BackButton from "@/app/_components/SingleProduct/BackButton";
 import CompanyServices from "@/app/_components/SingleProduct/CompanyServices";
 import ProductInfo from "@/app/_components/SingleProduct/ProductInfo";
 import SingleProductImage from "@/app/_components/SingleProduct/SingleProductImage";
 import { getSingleWatch } from "@/app/_lib/data-service";
 import { dummyData } from "@/app/dummyData";
+import Link from "next/link";
 import React from "react";
 
 export default async function page({ params }: { params: Params }) {
@@ -28,7 +30,7 @@ export default async function page({ params }: { params: Params }) {
     <div className="flex flex-col  justify-between gap-24 w-full items-center">
       {/* //* BREADCRUMB */}
       <BreadCrumb />
-
+      <BackButton />
       {/* //* Product Info & Image */}
       <div className="w-full max-w-[65%] flex justify-center">
         <div className="flex flex-row justify-between">
