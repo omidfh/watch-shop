@@ -27,7 +27,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/loading.js",
-    "app/_context/ShowFilterContext.js"
+    "app/_context/ShowFilterContext.js",
+    "app/_lib/auth.js"
   ],
   "exclude": ["node_modules"]
 }

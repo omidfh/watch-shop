@@ -1,25 +1,30 @@
-import { auth } from "./app/_lib/auth";
+import { auth } from "@/app/_lib/auth";
 import { NextResponse } from "next/server";
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
   const { nextUrl } = req;
 
-  // Check if the user is trying to access a protected route
-  const isProtectedRoute = nextUrl.pathname.startsWith("/profile");
+  // Protected routes
+  const protectedRoutes = ["/profile"];
+  const authRoutes = ["/login", "/signup"];
 
-  // If trying to access protected route but not logged in, redirect to login
-  if (isProtectedRoute && !isLoggedIn) {
+  // Check if trying to access a protected route without authentication
+  if (
+    protectedRoutes.some((route) => nextUrl.pathname.startsWith(route)) &&
+    !isLoggedIn
+  ) {
     return NextResponse.redirect(new URL("/login", nextUrl));
+  }
+
+  // Redirect logged-in users away from auth routes
+  if (authRoutes.includes(nextUrl.pathname) && isLoggedIn) {
+    return NextResponse.redirect(new URL("/", nextUrl));
   }
 
   return NextResponse.next();
 });
 
 export const config = {
-  matcher: [
-    // Match all paths that start with profile
-    "/profile/:path*",
-    // Add other routes you want to protect
-  ],
+  matcher: ["/profile/:path*", "/login", "/signup"],
 };

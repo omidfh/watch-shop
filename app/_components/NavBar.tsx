@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import logo from "@/public/logo.jpg";
-import { usePathname } from "next/navigation";
 import LoginBtn from "./LoginBtn";
 import Avatar from "./Avatar";
 import CartBtn from "./CartBtn";
 import NavLinks from "./NavLinks";
 import { auth } from "../_lib/auth";
+import LogoutBtn from "./LogoutBtn";
 
 export default async function NavBar() {
   const session = await auth();
@@ -43,6 +43,7 @@ export default async function NavBar() {
           <div className="flex items-center gap-4">
             <CartBtn />
             <Avatar />
+            <LogoutBtn />
           </div>
         ) : (
           <LoginBtn />

@@ -1,52 +1,62 @@
-// app/login/page.tsx
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
+import Loader from "../loader/page";
+import { revalidatePath } from "next/cache";
+import { revalidateHome } from "../_lib/actions";
+
+// export const metadata = {
+//   title: "Login",
+// };
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/profile";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const [isPending, startTransition] = useTransition();
+
+  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError("");
 
-    try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-      });
+    startTransition(async () => {
+      setError("");
 
-      if (result?.error) {
-        setError("Invalid email or password");
-        setIsLoading(false);
-        return;
+      try {
+        const result = await signIn("credentials", {
+          redirect: false,
+          email,
+          password,
+        });
+
+        if (result?.error) {
+          setError("Invalid email or password");
+          return;
+        }
+
+        // Successfully signed in
+        router.push(callbackUrl);
+        await revalidateHome();
+      } catch (error) {
+        setError("Something went wrong. Please try again.");
       }
-
-      // Successfully signed in
-      router.push(callbackUrl);
-    } catch (error) {
-      setError("Something went wrong. Please try again.");
-      setIsLoading(false);
-    }
+    });
   };
-
+  if (isPending) return <Loader />;
   return (
     <div className="flex min-h-screen flex-col items-center justify-start p-4 ">
-      <div className="w-full max-w-md space-y-8 p-16 border rounded-sm">
+      <div className="w-full max-w-lg space-y-8 p-16 border rounded-sm">
         <div className="text-center">
-          <h1 className="text-3xl  uppercase">Sign in to your account</h1>
+          <h1 className="text-3xl tracking-wider uppercase">
+            Sign in to your account
+          </h1>
         </div>
 
         {error && (
@@ -60,7 +70,7 @@ export default function Login() {
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="email"
-                className=" text-md font-medium text-stone-300"
+                className="tracking-wider text-md font-medium text-stone-300"
               >
                 Email address
               </label>
@@ -79,7 +89,7 @@ export default function Login() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-md font-medium text-stone-300"
+                className="tracking-wider block text-md font-medium text-stone-300"
               >
                 Password
               </label>
@@ -91,7 +101,7 @@ export default function Login() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full px-3 py-2 border-b border-gray-300  shadow-sm bg-transparent focus:outline-none"
+                  className="tracking-wider block w-full px-3 py-2 border-b border-gray-300  shadow-sm bg-transparent focus:outline-none"
                 />
                 <div className="relative">
                   {!showPassword ? (
@@ -109,25 +119,34 @@ export default function Login() {
               </div>
             </div>
           </div>
-
-          <div className="flex flex-col gap-4 justify-center items-center">
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-3 px-4 border border-transparent  shadow-sm text-md uppercase font-medium text-white bg-yellow-600 hover:bg-stone-300 hover:bg-opacity-30 focus:outline-none transition-all duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              {isLoading ? "Signing in..." : "Sign in"}
-            </button>
-            <span className="text-stone-300">or</span>
-            <button
-              onClick={() => signIn("google", { callbackUrl })}
-              className="text-stone-900 py-2 px-3 flex gap-2 items-center text-sm uppercase rounded-full bg-stone-100 bg-opacity-90 justify-center w-fit hover:bg-opacity-20 hover:text-stone-100 transition-all duration-200 ease-in-out"
-            >
-              sign in with
-              <FcGoogle className="text-3xl" />
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={isPending}
+            className="w-full py-3 px-4 border border-transparent  shadow-sm text-md uppercase font-medium text-white bg-yellow-600 hover:bg-stone-300 hover:bg-opacity-30 focus:outline-none transition-all duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            {isPending ? "Signing in..." : "Sign in"}
+          </button>
         </form>
+
+        <div className="flex flex-col gap-4 justify-center items-center">
+          {/* <span className="tracking-wider text-stone-300">or</span>
+          <button
+            onClick={async () => {
+              await googleSignInAction();
+            }}
+            className="tracking-wider text-stone-900 py-2 px-3 flex gap-2 items-center text-sm uppercase rounded-full bg-stone-100 bg-opacity-100 justify-center w-fit hover:bg-opacity-20 hover:text-stone-100 transition-all duration-200 ease-in-out"
+          >
+            sign in with
+            <FcGoogle className="text-3xl" />
+          </button> */}
+          {/* <GoogleLogin /> */}
+          <Link
+            className="text-stone-300 hover:underline py-1 tracking-wider"
+            href={"/signup"}
+          >
+            Don't have an account? Sign up
+          </Link>
+        </div>
       </div>
     </div>
   );

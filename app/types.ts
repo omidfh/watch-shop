@@ -49,3 +49,19 @@ interface WatchElement {
   gender?: string;
   description?: string;
 }
+
+interface User {
+  id: number;
+  email: string;
+  password?: string;
+  phoneNumber: string | number;
+  zipCode: number;
+  address: string;
+  profileImage: string;
+}
+
+interface Cart {
+  id: number;
+  userId: number;
+  productIds: number[];
+}

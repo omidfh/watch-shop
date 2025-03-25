@@ -1,8 +1,10 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
-import { createClient } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
+import { addUser, getUserFromEmail } from "./data-service";
+import bcrypt from "bcryptjs";
+import { revalidatePath } from "next/cache";
 
 // Initialize Supabase client
 
@@ -19,6 +21,7 @@ const authConfig = {
       },
       async authorize(credentials) {
         const { email, password } = credentials;
+        console.log("mamad", email, password);
 
         if (!email || !password) {
           return null;
@@ -38,20 +41,18 @@ const authConfig = {
 
           // Here you should verify the password
           // If you've stored plain passwords (not recommended), you can do:
-          if (user.password !== password) {
-            return null;
-          }
+          // if (user.password !== password) {
+          //   return null;
+          // }
 
           // Better to use bcrypt to compare hashed passwords:
-          // const passwordMatch = await bcrypt.compare(password, user.password);
-          // if (!passwordMatch) return null;
+          const passwordMatch = bcrypt.compare(password, user.password);
+          if (!passwordMatch) return null;
 
-          return {
-            id: user.id,
-            name: user.name || user.email,
-            email: user.email,
-            // Add any other fields you want available in the session
-          };
+          console.log("useeee", user);
+
+          revalidatePath("/");
+          return user;
         } catch (error) {
           console.error("Authorization error:", error);
           return null;
@@ -61,20 +62,42 @@ const authConfig = {
   ],
   callbacks: {
     authorized({ auth, request }) {
+      console.log("authhh", auth, request);
       return !!auth?.user;
     },
-    // async session({ session, token }) {
-    //   // Add user data to session
-    //   if (session?.user) {
-    //     session.user.id = token.sub;
-    //     // Add any other custom fields you want
-    //   }
-    //   return session;
-    // },
+
+    //sign in method
+    async signIn({ user, account, profile }) {
+      try {
+        const existingUser = await getUserFromEmail(user.email);
+        console.log("&&&&&&&&", user);
+
+        const newGuestData = {
+          fullName: user.name,
+          email: user.email,
+        };
+
+        if (!existingUser) await addUser(newGuestData);
+
+        return true;
+      } catch {
+        return false;
+      }
+    },
+
+    async session({ session, user }) {
+      console.log("function runs");
+      const guest = await getUserFromEmail(session?.user?.email);
+      session.user.guestId = guest.id;
+      return session;
+    },
   },
+  pages: { signIn: "/login" },
 };
 
 export const {
+  signIn,
+  signOut,
   auth,
   handlers: { GET, POST },
 } = NextAuth(authConfig);

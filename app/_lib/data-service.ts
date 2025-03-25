@@ -88,3 +88,44 @@ export async function getSingleWatch(
     return null; // Return null in case of error
   }
 }
+
+export async function addUser(newUser: Partial<User>) {
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .insert([newUser])
+      .select();
+    if (error) throw new Error(error.message);
+    console.log("useris", data);
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw new Error(" An Error occurred during add user please try again!");
+  }
+}
+
+export async function getUserFromEmail(email: string) {
+  try {
+    const { data: user, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("email", email)
+      .single();
+    if (error) throw new Error(error.message);
+    return user;
+  } catch (err) {
+    console.log(err);
+    throw new Error("user could not be found!");
+  }
+}
+
+export async function addCart(cartData: Partial<Cart>) {
+  console.log("carttt", cartData);
+  try {
+    const { data, error } = await supabase.from("cart").insert([cartData]);
+    if (error) throw new Error(error.message);
+  } catch (err) {
+    console.log(err);
+    throw new Error("use cart cannot be added");
+  }
+}
