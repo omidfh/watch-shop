@@ -21,7 +21,6 @@ const authConfig = {
       },
       async authorize(credentials) {
         const { email, password } = credentials;
-        console.log("mamad", email, password);
 
         if (!email || !password) {
           return null;
@@ -39,19 +38,12 @@ const authConfig = {
             return null;
           }
 
-          // Here you should verify the password
-          // If you've stored plain passwords (not recommended), you can do:
-          // if (user.password !== password) {
-          //   return null;
-          // }
-
           // Better to use bcrypt to compare hashed passwords:
-          const passwordMatch = bcrypt.compare(password, user.password);
+          const passwordMatch = await bcrypt.compare(password, user.password);
           if (!passwordMatch) return null;
 
           console.log("useeee", user);
 
-          revalidatePath("/");
           return user;
         } catch (error) {
           console.error("Authorization error:", error);
@@ -62,7 +54,6 @@ const authConfig = {
   ],
   callbacks: {
     authorized({ auth, request }) {
-      console.log("authhh", auth, request);
       return !!auth?.user;
     },
 
@@ -70,7 +61,6 @@ const authConfig = {
     async signIn({ user, account, profile }) {
       try {
         const existingUser = await getUserFromEmail(user.email);
-        console.log("&&&&&&&&", user);
 
         const newGuestData = {
           fullName: user.name,
@@ -86,7 +76,6 @@ const authConfig = {
     },
 
     async session({ session, user }) {
-      console.log("function runs");
       const guest = await getUserFromEmail(session?.user?.email);
       session.user.guestId = guest.id;
       return session;

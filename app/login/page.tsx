@@ -23,7 +23,7 @@ export default function Login() {
 
   const [isPending, startTransition] = useTransition();
 
-  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     startTransition(async () => {
