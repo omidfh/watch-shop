@@ -54,10 +54,10 @@ interface User {
   id: number;
   email: string;
   password?: string;
-  phoneNumber: string | number;
-  zipCode: number;
-  address: string;
-  profileImage: string;
+  phoneNumber?: string | number;
+  zipCode?: number | string;
+  address?: string;
+  profileImage?: string;
 }
 
 interface Cart {

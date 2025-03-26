@@ -1,9 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { signIn, signOut } from "./auth";
+import { auth, signIn, signOut } from "./auth";
 import { addCart, addUser } from "./data-service";
 import bcrypt from "bcryptjs";
+import { supabase } from "./supabase";
+import { redirect } from "next/navigation";
 
 export async function revalidateHome() {
   revalidatePath("/");
@@ -45,4 +47,36 @@ export async function signUpAction(formdata: Partial<User>) {
     console.error("Signup error:", err);
     throw new Error("An error occurred while signing up!");
   }
+}
+
+export async function updateUserAction(userData: FormData) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in first!");
+
+  console.log("userData", userData, session);
+
+  const profileData = {
+    name: userData.get("name"),
+    email: userData.get("email"),
+    phoneNumber: Number(userData.get("phoneNumber")),
+    zipCode: userData.get("zipCode"),
+    address: userData.get("address"),
+  };
+
+  console.log("datato", profileData);
+
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .update(profileData)
+      .eq("id", session?.user?.id)
+      .select()
+      .single();
+  } catch (err) {
+    console.log(err);
+    throw new Error("An error occurred during profile update.");
+  }
+
+  revalidatePath("/profile");
+  redirect("/");
 }

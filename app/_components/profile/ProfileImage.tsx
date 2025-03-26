@@ -5,7 +5,7 @@ import React from "react";
 
 import profilePic from "@/public/profile.png";
 
-export default function ProfileImage() {
+export default function ProfileImage({ image }: { image: string }) {
   function handleImageClick() {
     document?.getElementById("fileInput")?.click();
   }
@@ -15,7 +15,7 @@ export default function ProfileImage() {
         <Image
           alt="profilePicture"
           className="rounded-full hover:opacity-50 cursor-pointer transition-all ease-in-out duration-200"
-          src={profilePic}
+          src={image || profilePic}
           onClick={handleImageClick}
           width={100}
         />

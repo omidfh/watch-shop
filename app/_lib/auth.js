@@ -4,7 +4,6 @@ import Google from "next-auth/providers/google";
 import { supabase } from "./supabase";
 import { addUser, getUserFromEmail } from "./data-service";
 import bcrypt from "bcryptjs";
-import { revalidatePath } from "next/cache";
 
 // Initialize Supabase client
 
@@ -76,8 +75,9 @@ const authConfig = {
     },
 
     async session({ session, user }) {
-      const guest = await getUserFromEmail(session?.user?.email);
-      session.user.guestId = guest.id;
+      const loggedInUser = await getUserFromEmail(session?.user?.email);
+      console.log("sessions", session, loggedInUser);
+      session.user.id = loggedInUser.id;
       return session;
     },
   },

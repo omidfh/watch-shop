@@ -2,8 +2,15 @@ import React from "react";
 import BreadCrumb from "../_components/products/BreadCrumb";
 
 import ProfileImage from "../_components/profile/ProfileImage";
+import { auth } from "../_lib/auth";
+import { getUserFromEmail } from "../_lib/data-service";
+import { updateUserAction } from "../_lib/actions";
+import SubmitButton from "../_components/profile/SubmitButton";
 
-export default function page() {
+export default async function page() {
+  const session = await auth();
+  const userData = await getUserFromEmail(session?.user?.email || "");
+
   return (
     <div className="flex flex-col w-full justify-between items-center gap-24">
       <BreadCrumb />
@@ -18,8 +25,8 @@ export default function page() {
           </div>
 
           {/* //* PROFILE INPUTS */}
-          <form className="flex flex-col gap-10">
-            <ProfileImage />
+          <form className="flex flex-col gap-10" action={updateUserAction}>
+            <ProfileImage image={userData.profileImage} />
             {/* //* name & email */}
             <div className="flex w-full justify-between">
               {/* //*name */}
@@ -28,7 +35,11 @@ export default function page() {
                   Name
                 </label>
                 <input
-                  className="bg-transparent focus:outline-none border-b py-2 placeholder:tracking-wider"
+                  name="name"
+                  defaultValue={
+                    userData.name || userData.email.split("@")?.[0] || ""
+                  }
+                  className="bg-transparent focus:outline-none border-b py-2 placeholder:text-opacity-60 placeholder:tracking-wider"
                   type="text"
                   placeholder="ex John Doe"
                 />
@@ -40,9 +51,10 @@ export default function page() {
                   Email
                 </label>
                 <input
+                  defaultValue={userData.email || ""}
                   id="email"
                   name="email"
-                  className="bg-transparent focus:outline-none border-b py-2 placeholder:tracking-wider"
+                  className="bg-transparent focus:outline-none border-b py-2 placeholder:text-opacity-60  placeholder:tracking-wider"
                   type="email"
                   placeholder="example@example.com"
                 />
@@ -56,8 +68,10 @@ export default function page() {
                   Phone Number
                 </label>
                 <input
+                  name="phoneNumber"
+                  defaultValue={userData.phoneNumber || ""}
                   id="phoneNumber"
-                  className="bg-transparent focus:outline-none border-b py-2 placeholder:tracking-wider"
+                  className="bg-transparent focus:outline-none border-b py-2 placeholder:text-opacity-60  placeholder:tracking-wider"
                   type="number"
                   placeholder="+0-123-456 78 90"
                 />
@@ -69,11 +83,12 @@ export default function page() {
                   Zip Code
                 </label>
                 <input
+                  defaultValue={userData.zipCode || ""}
                   id="zipCode"
                   name="zipCode"
-                  className="bg-transparent focus:outline-none border-b py-2 placeholder:tracking-wider"
-                  type="number"
-                  placeholder="0123456789"
+                  className="bg-transparent focus:outline-none border-b py-2 placeholder:text-opacity-60  placeholder:tracking-wider"
+                  type="text"
+                  placeholder="A-Z 0_9"
                 />
               </div>
             </div>
@@ -85,23 +100,17 @@ export default function page() {
                   Address
                 </label>
                 <textarea
+                  defaultValue={userData.address || ""}
                   id="address"
                   name="address"
-                  minLength={15}
-                  className="bg-transparent focus:outline-none border border-stone-300 border-opacity-20 placeholder:tracking-wider w-full p-4 rounded-sm"
-                  //   placeholder="0123456789"
+                  className="bg-transparent focus:outline-none border border-stone-300 placeholder:text-opacity-60  border-opacity-20 placeholder:tracking-wider w-full p-4 rounded-sm"
                 />
               </div>
             </div>
 
             {/* //* Address*/}
             <div className="flex w-full justify-end">
-              <button
-                type="submit"
-                className="text-lg bg-yellow-100 text-center bg-opacity-90 py-2 w-28 text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500"
-              >
-                Save & Exit
-              </button>
+              <SubmitButton />
             </div>
           </form>
         </div>

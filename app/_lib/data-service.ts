@@ -105,6 +105,7 @@ export async function addUser(newUser: Partial<User>) {
 }
 
 export async function getUserFromEmail(email: string) {
+  if (!email || email === "") return;
   try {
     const { data: user, error } = await supabase
       .from("users")
@@ -127,5 +128,18 @@ export async function addCart(cartData: Partial<Cart>) {
   } catch (err) {
     console.log(err);
     throw new Error("use cart cannot be added");
+  }
+}
+
+export async function updateUser(userData: Partial<User>) {
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .update({ other_column: "otherValue" })
+      .eq("some_column", "someValue")
+      .select();
+  } catch (err) {
+    console.log(err);
+    throw new Error("An error occurred during profile update.");
   }
 }
