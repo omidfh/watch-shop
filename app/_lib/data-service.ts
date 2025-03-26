@@ -36,7 +36,6 @@ export async function getWatches(
 
     revalidatePath("/products");
     const sortedData = sortingProducts(sort, watches);
-    // console.log("data", sortedData);
 
     // Pagination: Fetch 9 items per page
     const start = (Number(pageNumber) - 1) * itemsPerPage;
@@ -96,7 +95,6 @@ export async function addUser(newUser: Partial<User>) {
       .insert([newUser])
       .select();
     if (error) throw new Error(error.message);
-    console.log("useris", data);
     return data;
   } catch (err) {
     console.log(err);
@@ -121,7 +119,6 @@ export async function getUserFromEmail(email: string) {
 }
 
 export async function addCart(cartData: Partial<Cart>) {
-  console.log("carttt", cartData);
   try {
     const { data, error } = await supabase.from("cart").insert([cartData]);
     if (error) throw new Error(error.message);

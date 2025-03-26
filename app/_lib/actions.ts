@@ -21,24 +21,19 @@ export async function signOutAction() {
 
 export async function signUpAction(formdata: Partial<User>) {
   try {
-    // Validate that email and password are provided
     if (!formdata.email || !formdata.password) {
       throw new Error("Email and password are required");
     }
 
-    // Hash the password before storing
-    const saltRounds = 10; // Recommended number of salt rounds
+    const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(formdata.password, saltRounds);
 
-    const newGuestData = {
+    const newUserData = {
       email: formdata.email,
-      password: hashedPassword, // Store the hashed password
+      password: hashedPassword,
     };
 
-    console.log("Attempting to add user", { email: newGuestData.email });
-
-    const user = await addUser(newGuestData);
-    console.log("User created", user);
+    const user = await addUser(newUserData);
 
     if (user) await addCart({ userId: user[0].id, productIds: [] });
 
@@ -53,8 +48,6 @@ export async function updateUserAction(userData: FormData) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in first!");
 
-  console.log("userData", userData, session);
-
   const profileData = {
     name: userData.get("name"),
     email: userData.get("email"),
@@ -62,8 +55,6 @@ export async function updateUserAction(userData: FormData) {
     zipCode: userData.get("zipCode"),
     address: userData.get("address"),
   };
-
-  console.log("datato", profileData);
 
   try {
     const { data, error } = await supabase

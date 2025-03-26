@@ -41,8 +41,6 @@ const authConfig = {
           const passwordMatch = await bcrypt.compare(password, user.password);
           if (!passwordMatch) return null;
 
-          console.log("useeee", user);
-
           return user;
         } catch (error) {
           console.error("Authorization error:", error);
@@ -76,7 +74,6 @@ const authConfig = {
 
     async session({ session, user }) {
       const loggedInUser = await getUserFromEmail(session?.user?.email);
-      console.log("sessions", session, loggedInUser);
       session.user.id = loggedInUser.id;
       return session;
     },
