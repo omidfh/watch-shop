@@ -2,6 +2,8 @@ import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { sortingProducts } from "../_helpers/sortingProducts";
 
+//* watch functions
+
 export async function getWatches(
   pageNumber: number | string,
   sort: string,
@@ -88,6 +90,24 @@ export async function getSingleWatch(
   }
 }
 
+export async function getWatchesByIds(watchIds: number[]) {
+  try {
+    const { data: watches, error } = await supabase
+      .from("watches")
+      .select("*") // Select all columns (or specify certain ones like 'id, name, price')
+      .in("id", watchIds); // Fetch watches where id is in the given array
+
+    if (error) throw new Error(error.message);
+
+    return watches;
+  } catch (err) {
+    console.error("Error fetching watches:", err);
+    throw new Error("Watches could not be loaded at the moment.");
+  }
+}
+
+//* User functions
+
 export async function addUser(newUser: Partial<User>) {
   try {
     const { data, error } = await supabase
@@ -141,11 +161,14 @@ export async function updateUser(userData: Partial<User>) {
   }
 }
 
-export async function getCartItemNumber(userId: number) {
+//* Cart functions
+
+export async function getCartItems(userId: number | string) {
+  if (!userId || userId === "") return;
   try {
     const { data: cart, error } = await supabase
       .from("cart")
-      .select("productIds")
+      .select("products")
       .eq("userId", userId)
       .single();
 

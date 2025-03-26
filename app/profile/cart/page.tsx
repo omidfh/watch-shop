@@ -1,11 +1,37 @@
 import BreadCrumb from "@/app/_components/products/BreadCrumb";
 import CartItem from "@/app/_components/profile/CartItem";
-import { dummyData } from "@/app/dummyData";
+import { auth } from "@/app/_lib/auth";
+import { getCartItems, getWatchesByIds } from "@/app/_lib/data-service";
 import Link from "next/link";
 import React from "react";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 
-export default function page() {
+export default async function page() {
+  const session = await auth();
+
+  const cartItems = await getCartItems(session?.user?.id || "");
+
+  const Ids = cartItems?.products?.map((obj: {}) => Object.keys(obj)[0]);
+
+  const watchesData = await getWatchesByIds(Ids);
+
+  function findQuantity(products: {}[], watchId: number | string) {
+    const productObj = products.find(
+      (obj) => Object.keys(obj)[0] === String(watchId)
+    );
+    return productObj ? Number(Object.values(productObj)[0]) : 0;
+  }
+
+  const totalPrice = watchesData.reduce(
+    (acc, cur) =>
+      acc +
+      findQuantity(cartItems?.products, cur.id) * (cur.price - cur.discount),
+    0
+  );
+
+  console.log("items", cartItems);
+  console.log("watches", watchesData);
+
   return (
     <div className="flex flex-col w-full justify-between items-center gap-24">
       <BreadCrumb />
@@ -19,13 +45,14 @@ export default function page() {
 
           {/* //* ITEMS */}
           <div className="flex flex-col ">
-            {dummyData.slice(0, 3).map((item) => (
+            {watchesData?.map((item) => (
               <CartItem
                 name={item.name}
                 id={item.id}
-                price={item.price}
+                key={item.id}
+                price={item.price - item.discount}
                 image={item.picture}
-                quantity={1}
+                quantity={findQuantity(cartItems?.products, item.id)}
               />
             ))}
           </div>
@@ -33,7 +60,7 @@ export default function page() {
           {/* //* Total */}
           <div className="flex w-full justify-center">
             <p className="text-xl tracking-wider">
-              Total : <span className="text-yellow-400">$ 5500</span>
+              Total : <span className="text-yellow-400">$ {totalPrice}</span>
             </p>
           </div>
 

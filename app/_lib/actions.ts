@@ -35,7 +35,7 @@ export async function signUpAction(formdata: Partial<User>) {
 
     const user = await addUser(newUserData);
 
-    if (user) await addCart({ userId: user[0].id, productIds: [] });
+    if (user) await addCart({ userId: user[0].id, products: [{}] });
 
     return user;
   } catch (err) {

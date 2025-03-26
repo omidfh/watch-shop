@@ -64,4 +64,5 @@ interface Cart {
   id: number;
   userId: number;
   productIds: number[];
+  products: {}[];
 }
