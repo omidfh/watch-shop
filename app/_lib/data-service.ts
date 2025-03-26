@@ -140,3 +140,18 @@ export async function updateUser(userData: Partial<User>) {
     throw new Error("An error occurred during profile update.");
   }
 }
+
+export async function getCartItemNumber(userId: number) {
+  try {
+    const { data: cart, error } = await supabase
+      .from("cart")
+      .select("productIds")
+      .eq("userId", userId)
+      .single();
+
+    return cart;
+  } catch (err) {
+    console.log(err);
+    throw new Error("User card info could not fetch at the moment");
+  }
+}

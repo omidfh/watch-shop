@@ -41,7 +41,7 @@ export default async function NavBar() {
       <div className="flex  ">
         {isLoggedIn ? (
           <div className="flex items-center gap-4">
-            <CartBtn />
+            <CartBtn userId={Number(session?.user?.id)} />
             <Avatar />
             <LogoutBtn />
           </div>
