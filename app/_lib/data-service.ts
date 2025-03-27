@@ -4,6 +4,21 @@ import { sortingProducts } from "../_helpers/sortingProducts";
 
 //* watch functions
 
+export async function getThreeWatches() {
+  try {
+    const randNum = Math.floor(Math.random() * 19); // 0 to 18 inclusive
+    const { data: watches, error } = await supabase
+      .from("watches")
+      .select("*")
+      .range(randNum, randNum + 2);
+    if (error) throw error;
+    return watches;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Watches could not be fetched");
+  }
+}
+
 export async function getWatches(
   pageNumber: number | string,
   sort: string,
@@ -163,8 +178,10 @@ export async function updateUser(userData: Partial<User>) {
 
 //* Cart functions
 
-export async function getCartItems(userId: number | string) {
-  if (!userId || userId === "") return;
+export async function getCartItems(
+  userId: number | string
+): Promise<{ products: Record<string, number>[] } | null> {
+  if (!userId || userId === "") return null; // Explicitly return null for invalid input
   try {
     const { data: cart, error } = await supabase
       .from("cart")
@@ -172,9 +189,14 @@ export async function getCartItems(userId: number | string) {
       .eq("userId", userId)
       .single();
 
-    return cart;
+    if (error) throw error;
+
+    // If cart is null (no row exists), return a default empty products array
+    return cart
+      ? { products: cart.products as Record<string, number>[] }
+      : { products: [] };
   } catch (err) {
     console.log(err);
-    throw new Error("User card info could not fetch at the moment");
+    throw new Error("User cart info could not be fetched at the moment");
   }
 }

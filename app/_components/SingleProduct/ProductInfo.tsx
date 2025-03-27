@@ -1,4 +1,8 @@
-import React from "react";
+"use client";
+
+import { addItemToCartAction } from "@/app/_lib/actions";
+import React, { useTransition } from "react";
+import Loader from "../loader/page";
 
 interface SingleProductInfoProps {
   selectedProduct: SingleWatch;
@@ -7,6 +11,15 @@ interface SingleProductInfoProps {
 export default function ProductInfo({
   selectedProduct,
 }: SingleProductInfoProps) {
+  const [isPending, startTransition] = useTransition();
+  async function handleAddToCart() {
+    startTransition(async () => {
+      await addItemToCartAction(selectedProduct?.id, 1);
+    });
+  }
+
+  if (isPending) return <Loader />;
+
   return (
     <div className="flex py-6  px-10 w-[50%] ">
       <div className="flex flex-col justify-center gap-4">
@@ -77,7 +90,10 @@ export default function ProductInfo({
             </span>
           </span>
         </div>
-        <button className="bg-yellow-100 text-lg text-center bg-opacity-90 p-4  text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500">
+        <button
+          onClick={handleAddToCart}
+          className="bg-yellow-100 text-lg text-center bg-opacity-90 p-4  text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500"
+        >
           Add to Cart
         </button>
       </div>

@@ -4,6 +4,11 @@ import LogoSlider from "./_components/home/LogoSlider";
 import Specifics from "./_components/home/Specifics";
 import Watch from "./_components/home/Watch";
 
+export const metadata = {
+  title: "Home",
+  description: "explore watches choose favorite one",
+};
+
 export default function Home() {
   return (
     <div className="flex flex-col justify-between gap-24 ">
@@ -28,7 +33,7 @@ export default function Home() {
 
         {/* //* PART 3 */}
         <div className="flex justify-center">
-          <div className="max-w-[65%] ">
+          <div className="w-full max-w-[65%] ">
             <HomeProductList />
           </div>
         </div>

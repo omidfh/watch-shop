@@ -63,6 +63,5 @@ interface User {
 interface Cart {
   id: number;
   userId: number;
-  productIds: number[];
-  products: {}[];
+  products: Record<string, number>[];
 }

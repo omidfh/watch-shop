@@ -1,23 +1,15 @@
-import Image, { StaticImageData } from "next/image";
-import React from "react";
+"use client";
+
+import Image from "next/image";
+import React, { useTransition } from "react";
 import Link from "next/link";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { PiGearFineFill, PiWatchFill } from "react-icons/pi";
 import { HiMiniSwatch } from "react-icons/hi2";
 import { MdRemoveRedEye } from "react-icons/md";
 import defaultWatchPic from "@/public/watch-default.jpg";
-
-type Props = {
-  name: string;
-  price: string | number;
-  id: string | number;
-  picture: StaticImageData | string;
-  brand: string;
-  material: string;
-  strap: string;
-  hasDiscount: boolean;
-  discount?: number | string;
-};
+import { addItemToCartAction } from "@/app/_lib/actions";
+import Loader from "../loader/page";
 
 export default function SingleProductItem({
   name,
@@ -30,6 +22,15 @@ export default function SingleProductItem({
   discount,
   id,
 }: SingleWatch) {
+  const [isPending, startTransition] = useTransition();
+  async function handleAddToCart() {
+    startTransition(async () => {
+      await addItemToCartAction(id, 1);
+    });
+  }
+
+  if (isPending) return <Loader />;
+
   return (
     <div className="flex flex-col justify-evenly bg-stone-400 bg-opacity-10 ">
       <div className="flex flex-col justify-between h-full">
@@ -78,12 +79,12 @@ export default function SingleProductItem({
       <div className="flex flex-col">
         <hr className="border-stone-800" />
         <div className="flex justify-between  h-full">
-          <Link
-            href={"/products"}
+          <button
+            onClick={handleAddToCart}
             className="uppercase px-2 py-5 flex justify-center gap-2 items-center h-[100%] w-[50%] tracking-wide text-center   hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"
           >
             <BsFillCartPlusFill className="text-2xl" />
-          </Link>
+          </button>
           <Link
             href={`/products/${id}`}
             className=" uppercase p-2 flex justify-center gap-2 items-center h-full w-[50%] tracking-wide text-center hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"

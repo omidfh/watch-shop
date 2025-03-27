@@ -4,11 +4,14 @@ import SingleProduct from "./SingleProduct";
 import exampleWatch from "@/public/example-watch.png";
 import exampleWatch2 from "@/public/example-watch2.png";
 import exampleWatch3 from "@/public/example-watch3.png";
+import { getThreeWatches } from "@/app/_lib/data-service";
 
-export default function HomeProductList() {
+export default async function HomeProductList() {
+  const watches = await getThreeWatches();
+  console.log("wathcesare", watches);
   return (
     <div className="flex flex-col w-[100%] gap-24">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center w-full">
         <div className="flex flex-col uppercase">
           <p className="text-sm text-yellow-300 text-opacity-60">
             Timeless Creations
@@ -29,24 +32,17 @@ export default function HomeProductList() {
       {/* //*Products */}
 
       <div className="grid grid-cols-3 gap-4">
-        <SingleProduct
-          id={"1"}
-          name={"Classic Chrono Metal"}
-          price={"250.000"}
-          image={exampleWatch}
-        />
-        <SingleProduct
-          id={"2"}
-          name={"Elegant Gold Brown Leather"}
-          price={"150.000"}
-          image={exampleWatch2}
-        />
-        <SingleProduct
-          id={"3"}
-          name={"Classic Chrono Black Leather"}
-          price={"197.000"}
-          image={exampleWatch3}
-        />
+        {watches?.map((watch) => (
+          <SingleProduct
+            key={watch.id}
+            id={watch.id}
+            name={watch.name}
+            price={watch.price - watch.discount}
+            picture={watch.picture}
+            hasDiscount={watch.hasDiscount}
+            discount={watch.discount}
+          />
+        ))}
       </div>
     </div>
   );

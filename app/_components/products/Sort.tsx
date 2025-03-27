@@ -30,8 +30,8 @@ export default function Sort({ sort }: { sort: string }) {
           defaultValue={sort}
           onChange={handleChange}
         >
-          <option className="p-3" value="random">
-            Random
+          <option className="p-3" value="all">
+            All
           </option>
           <option className="p-3" value="discount-percent-asc">
             Discount % ↓ (High to Low)

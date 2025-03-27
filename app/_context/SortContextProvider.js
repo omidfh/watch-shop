@@ -18,9 +18,9 @@ export function SortingProvider({ children }) {
       if (page) {
         setSort(sort);
       }
-      if (!page || sort === "random") {
+      if (!page || sort === "all") {
         const params = new URLSearchParams(searchParams.toString());
-        params.set("sort", "random");
+        params.set("sort", "all");
         router.push(`?${params.toString()}`, { scroll: false });
       }
     }
