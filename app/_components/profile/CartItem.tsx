@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 
@@ -5,16 +7,27 @@ import React from "react";
 import { LuMinus, LuPlus } from "react-icons/lu";
 import { MdDelete } from "react-icons/md";
 import defaultWatchPic from "@/public/watch-default.jpg";
+import { deleteItemFromCart } from "@/app/_lib/actions";
 
 interface Props {
   price: string | number;
   name: string;
   id: string | number;
-  quantity: number | string;
+  quantity: number;
   image: string;
 }
 
-export default function CartItem({ price, name, id, quantity, image }: Props) {
+export default function CartItem({
+  price,
+  name,
+  id,
+  quantity = 1,
+  image,
+}: Props) {
+  async function handleDeleteItem() {
+    await deleteItemFromCart(id);
+  }
+
   return (
     <div className="flex w-full  justify-between items-center border-b border-stone-400 border-opacity-40  py-6 px-8 h-26">
       {/* //* image */}
@@ -53,7 +66,10 @@ export default function CartItem({ price, name, id, quantity, image }: Props) {
       </div>
 
       {/* //* delete item btn */}
-      <button className="flex items-center p-1 hover:bg-stone-100 rounded-sm hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200 ">
+      <button
+        onClick={handleDeleteItem}
+        className="flex items-center p-1 hover:bg-stone-100 rounded-sm hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200 "
+      >
         <MdDelete className="text-xl text-stone-300 " />
       </button>
     </div>

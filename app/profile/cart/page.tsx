@@ -11,13 +11,18 @@ export default async function page() {
 
   const cartItems = await getCartItems(session?.user?.id || "");
 
-  const Ids = cartItems?.products?.map((obj: {}) => Object.keys(obj)[0]);
+  const Ids = cartItems?.products?.map((obj: {}) => Object.keys(obj)[0]) || [];
 
   const watchesData = await getWatchesByIds(Ids);
 
-  function findQuantity(products: {}[], watchId: number | string) {
+  function findQuantity(
+    products: Record<string, number>[],
+    watchId: number | string
+  ) {
+    if (!products || !watchId) return;
+
     const productObj = products.find(
-      (obj) => Object.keys(obj)[0] === String(watchId)
+      (obj: Record<string, number>) => Object.keys(obj)[0] === String(watchId)
     );
     return productObj ? Number(Object.values(productObj)[0]) : 0;
   }
@@ -25,12 +30,9 @@ export default async function page() {
   const totalPrice = watchesData.reduce(
     (acc, cur) =>
       acc +
-      findQuantity(cartItems?.products, cur.id) * (cur.price - cur.discount),
+      findQuantity(cartItems?.products!, cur.id)! * (cur.price - cur.discount),
     0
   );
-
-  console.log("items", cartItems);
-  console.log("watches", watchesData);
 
   return (
     <div className="flex flex-col w-full justify-between items-center gap-24">
@@ -52,7 +54,7 @@ export default async function page() {
                 key={item.id}
                 price={item.price - item.discount}
                 image={item.picture}
-                quantity={findQuantity(cartItems?.products, item.id)}
+                quantity={findQuantity(cartItems?.products!, item.id) || 1}
               />
             ))}
           </div>
@@ -60,7 +62,10 @@ export default async function page() {
           {/* //* Total */}
           <div className="flex w-full justify-center">
             <p className="text-xl tracking-wider">
-              Total : <span className="text-yellow-400">$ {totalPrice}</span>
+              Total :{" "}
+              <span className="text-yellow-400">
+                $ {totalPrice.toLocaleString()}
+              </span>
             </p>
           </div>
 

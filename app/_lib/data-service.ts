@@ -105,7 +105,7 @@ export async function getSingleWatch(
   }
 }
 
-export async function getWatchesByIds(watchIds: number[]) {
+export async function getWatchesByIds(watchIds: string[]) {
   try {
     const { data: watches, error } = await supabase
       .from("watches")
