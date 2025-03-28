@@ -11,7 +11,11 @@ const CartSpinner = ({ size = "md" }) => {
   };
 
   return (
-    <div className="relative flex items-center justify-center py-6 px-8 h-26">
+    <div
+      className={`relative flex items-center justify-center ${
+        size === "md" && "py-6 px-8 h-26"
+      }`}
+    >
       <div className="absolute inset-0 rounded-md"></div>
 
       <div

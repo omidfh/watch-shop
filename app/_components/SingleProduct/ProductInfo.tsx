@@ -3,6 +3,7 @@
 import { addItemToCartAction } from "@/app/_lib/actions";
 import React, { useTransition } from "react";
 import Loader from "../loader/page";
+import CartSpinner from "../CartSpinner";
 
 interface SingleProductInfoProps {
   selectedProduct: SingleWatch;
@@ -18,7 +19,7 @@ export default function ProductInfo({
     });
   }
 
-  if (isPending) return <Loader />;
+  // if (isPending) return <CartSpinner />;
 
   return (
     <div className="flex py-6  px-10 w-[50%] ">
@@ -91,10 +92,13 @@ export default function ProductInfo({
           </span>
         </div>
         <button
+          disabled={isPending}
           onClick={handleAddToCart}
-          className="bg-yellow-100 text-lg text-center bg-opacity-90 p-4  text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500"
+          className={`${
+            isPending ? "bg-stone-900" : "bg-yellow-100"
+          } text-lg text-center bg-opacity-90 p-4  text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500`}
         >
-          Add to Cart
+          {isPending ? <CartSpinner size="sm" /> : "Add to Cart"}
         </button>
       </div>
     </div>

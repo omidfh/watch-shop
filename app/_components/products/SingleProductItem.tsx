@@ -10,6 +10,7 @@ import { MdRemoveRedEye } from "react-icons/md";
 import defaultWatchPic from "@/public/watch-default.jpg";
 import { addItemToCartAction } from "@/app/_lib/actions";
 import Loader from "../loader/page";
+import CartSpinner from "../CartSpinner";
 
 export default function SingleProductItem({
   name,
@@ -29,7 +30,7 @@ export default function SingleProductItem({
     });
   }
 
-  if (isPending) return <Loader />;
+  if (isPending) return <CartSpinner size="lg" />;
 
   return (
     <div className="flex flex-col justify-evenly bg-stone-400 bg-opacity-10 ">
