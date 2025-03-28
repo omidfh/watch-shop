@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useTransition } from "react";
 
 // import image from "@/public/example-watch3.png";
 import { LuMinus, LuPlus } from "react-icons/lu";
@@ -12,6 +12,7 @@ import {
   decreaseItemFromCart,
   deleteItemFromCart,
 } from "@/app/_lib/actions";
+import CartSpinner from "../CartSpinner";
 
 interface Props {
   price: string | number;
@@ -28,21 +29,27 @@ export default function CartItem({
   quantity = 1,
   image,
 }: Props) {
-  async function handleDeleteItem() {
-    await deleteItemFromCart(id);
-  }
+  const [isPending, startTransition] = useTransition();
 
   async function handleSideButtons(quantity: number, action: string) {
-    if (quantity > 1 && action === "decrease") {
-      await decreaseItemFromCart(id, 1);
-    }
-    if (quantity === 1 && action === "decrease") {
-      await deleteItemFromCart(id);
-    }
-    if (action === "increase") {
-      await addItemToCartAction(id, 1);
-    }
+    startTransition(async () => {
+      if (action === "delete") {
+        await deleteItemFromCart(id);
+      }
+      if (quantity > 1 && action === "decrease") {
+        await decreaseItemFromCart(id, 1);
+      }
+      if (quantity === 1 && action === "decrease") {
+        await deleteItemFromCart(id);
+      }
+      if (action === "increase") {
+        await addItemToCartAction(id, 1);
+      }
+    });
   }
+
+  if (isPending) return <CartSpinner />;
+  // return <CartSpinner />;
 
   return (
     <div className="flex w-full  justify-between items-center border-b border-stone-400 border-opacity-40  py-6 px-8 h-26">
@@ -89,7 +96,7 @@ export default function CartItem({
 
       {/* //* delete item btn */}
       <button
-        onClick={handleDeleteItem}
+        onClick={() => handleSideButtons(quantity, "delete")}
         className="flex items-center p-1 hover:bg-stone-100 rounded-sm hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200 "
       >
         <MdDelete className="text-xl text-stone-300 " />
