@@ -167,3 +167,54 @@ export async function deleteItemFromCart(productId: number | string) {
     throw new Error("item could not deleted from cart");
   }
 }
+
+export async function decreaseItemFromCart(
+  productId: number | string,
+  quantity: number
+) {
+  const session = await auth();
+  if (!session) throw new Error("You should login first!");
+
+  try {
+    const cart = await getCartItems(session?.user?.id || "");
+    // Handle case where cart is null (no existing cart)
+    const products: Record<string, number>[] = cart?.products || [];
+
+    // Find the existing product in the cart
+    const existingProductIndex = products.findIndex(
+      (obj) => Object.keys(obj)[0] === String(productId)
+    );
+
+    // Create a copy of the current products array to modify
+    const updatedProducts = [...products];
+
+    const existingProduct = updatedProducts[existingProductIndex];
+    const currentProductKey = Object.keys(existingProduct)[0];
+    existingProduct[currentProductKey] -= quantity;
+
+    // Update the cart in the database
+    const { data, error } = await supabase
+      .from("cart")
+      .update({
+        products: updatedProducts,
+      })
+      .eq("userId", session?.user?.id)
+      .select();
+
+    if (error) {
+      console.error("Cart update error:", error);
+      throw new Error("Failed to update cart!");
+    }
+
+    revalidatePath("/profile/cart");
+
+    return {
+      success: true,
+      message: "Item decreased from cart successfully",
+      updatedCart: data[0],
+    };
+  } catch (err) {
+    console.error("Add to cart error:", err);
+    throw new Error("Cannot add item to cart!");
+  }
+}

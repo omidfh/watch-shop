@@ -7,7 +7,11 @@ import React from "react";
 import { LuMinus, LuPlus } from "react-icons/lu";
 import { MdDelete } from "react-icons/md";
 import defaultWatchPic from "@/public/watch-default.jpg";
-import { deleteItemFromCart } from "@/app/_lib/actions";
+import {
+  addItemToCartAction,
+  decreaseItemFromCart,
+  deleteItemFromCart,
+} from "@/app/_lib/actions";
 
 interface Props {
   price: string | number;
@@ -26,6 +30,18 @@ export default function CartItem({
 }: Props) {
   async function handleDeleteItem() {
     await deleteItemFromCart(id);
+  }
+
+  async function handleSideButtons(quantity: number, action: string) {
+    if (quantity > 1 && action === "decrease") {
+      await decreaseItemFromCart(id, 1);
+    }
+    if (quantity === 1 && action === "decrease") {
+      await deleteItemFromCart(id);
+    }
+    if (action === "increase") {
+      await addItemToCartAction(id, 1);
+    }
   }
 
   return (
@@ -49,13 +65,19 @@ export default function CartItem({
 
       {/* //* buttons */}
       <div className="flex items-center gap-4 w-[15%]">
-        <button className="p-1 hover:bg-stone-100 hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200">
+        <button
+          onClick={() => handleSideButtons(quantity, "decrease")}
+          className="p-1 hover:bg-stone-100 hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200"
+        >
           <LuMinus />
         </button>
         <div className="px-4 border rounded-sm">
           <p className="text-md font-semibold text-stone-300">{quantity}</p>
         </div>
-        <button className="p-1 hover:bg-stone-100 hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200">
+        <button
+          onClick={() => handleSideButtons(quantity, "increase")}
+          className="p-1 hover:bg-stone-100 hover:bg-opacity-15 hover:text-stone-100 transition-all ease-in-out duration-200"
+        >
           <LuPlus />
         </button>
       </div>
