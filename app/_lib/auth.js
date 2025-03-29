@@ -75,6 +75,8 @@ const authConfig = {
     async session({ session, user }) {
       const loggedInUser = await getUserFromEmail(session?.user?.email);
       session.user.id = loggedInUser.id;
+
+      session.user.image = loggedInUser.profileImage;
       return session;
     },
   },

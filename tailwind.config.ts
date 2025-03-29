@@ -15,6 +15,15 @@ const config: Config = {
         background4: "#FF0000",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        write: {
+          "0%, 100%": { transform: "translateX(0) rotate(-10deg)" },
+          "50%": { transform: "translateX(90%) rotate(10deg)" },
+        },
+      },
+      animation: {
+        write: "write 2s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

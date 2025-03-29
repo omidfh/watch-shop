@@ -42,7 +42,7 @@ export default async function NavBar() {
         {isLoggedIn ? (
           <div className="flex items-center gap-4">
             <CartBtn userId={Number(session?.user?.id)} />
-            <Avatar />
+            <Avatar pic={session?.user?.image || ""} />
             <LogoutBtn />
           </div>
         ) : (

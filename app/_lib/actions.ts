@@ -69,7 +69,7 @@ export async function updateUserAction(userData: FormData) {
   }
 
   revalidatePath("/profile");
-  redirect("/");
+  //   redirect("/");
 }
 
 export async function addItemToCartAction(
@@ -216,5 +216,98 @@ export async function decreaseItemFromCart(
   } catch (err) {
     console.error("Add to cart error:", err);
     throw new Error("Cannot add item to cart!");
+  }
+}
+
+// export async function uplaodUserImageAction(filePath: string, file) {
+//   const session = await auth();
+//   if (!session) throw new Error("You should login first!");
+//   try {
+//     const { data, error: uploadError } = await supabase.storage
+//       .from("profile-pics")
+//       .upload(filePath, file, {
+//         cacheControl: "3600",
+//         upsert: true,
+//       });
+
+//     if (uploadError) {
+//       throw uploadError;
+//     }
+
+//     // Get public URL of the uploaded image
+//     const {
+//       data: { publicUrl },
+//     } = supabase.storage.from("profile-pics").getPublicUrl(filePath);
+
+//     // Update user's profile in database with new image URL
+//     const { error: updateError } = await supabase
+//       .from("users")
+//       .update({ profileImage: publicUrl })
+//       .eq("id", session?.user?.id);
+
+//     if (updateError) {
+//       throw updateError;
+//     }
+
+//     return publicUrl;
+
+//     // Update local state with new image
+//     // setProfileImage(publicUrl);
+//   } catch (error) {
+//     console.error("Error uploading image:", error);
+//     alert("Failed to upload image. Please try again.");
+//   }
+// }
+
+export async function uploadUserImageAction(
+  filePath: string,
+  fileBase64: string,
+  fileType: string
+) {
+  const session = await auth();
+  if (!session) throw new Error("You should login first!");
+
+  try {
+    // Convert base64 to buffer for Supabase upload
+    const base64Data = fileBase64.split(",")[1]; // Remove the data URL prefix
+    const buffer = Buffer.from(base64Data, "base64");
+
+    // Upload to Supabase storage
+    const { data, error: uploadError } = await supabase.storage
+      .from("profile-pics")
+      .upload(filePath, buffer, {
+        cacheControl: "3600",
+        upsert: true,
+        contentType: fileType,
+      });
+
+    if (uploadError) {
+      console.error("Upload error:", uploadError);
+      throw uploadError;
+    }
+
+    // Get public URL of the uploaded image
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from("profile-pics").getPublicUrl(filePath);
+
+    // Update user's profile in database with new image URL
+    const { error: updateError } = await supabase
+      .from("users")
+      .update({ profileImage: publicUrl })
+      .eq("id", session?.user?.id);
+
+    if (updateError) {
+      console.error("Database update error:", updateError);
+      throw updateError;
+    }
+
+    // Revalidate the path to refresh the data
+    revalidatePath("/profile"); // Adjust this to your profile page path
+
+    return publicUrl;
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    throw new Error("Failed to upload image. Please try again.");
   }
 }
