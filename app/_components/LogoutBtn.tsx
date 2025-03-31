@@ -2,10 +2,12 @@
 import React from "react";
 import { IoLogOut } from "react-icons/io5";
 import { signOutAction } from "../_lib/actions";
+import { usePathname } from "next/navigation";
 
 export default function LogoutBtn() {
+  const pathname = usePathname();
   async function handleSignOut() {
-    await signOutAction();
+    await signOutAction(pathname);
   }
   return (
     <form action={handleSignOut}>

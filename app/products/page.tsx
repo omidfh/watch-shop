@@ -8,6 +8,7 @@ import { getWatches } from "../_lib/data-service";
 import PaginationParent from "../_components/products/PaginationParent";
 import FilterParent from "../_components/products/FilterParent";
 import { Fragment } from "react";
+import { auth } from "../_lib/auth";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -22,6 +23,7 @@ export default async function page({
   searchParams: SearchParams;
 }) {
   const { page, sort } = searchParams;
+  const session = await auth();
 
   let parsedFilters: Filters = {};
   try {
@@ -75,6 +77,7 @@ export default async function page({
               <Fragment>
                 {watches?.data?.map((item) => (
                   <SingleProductItem
+                    isLoggedIn={!!session?.user}
                     key={item.id}
                     id={item.id}
                     name={item.name}

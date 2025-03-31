@@ -11,6 +11,7 @@ interface SingleWatch {
   gender?: string;
   picture: string;
   description?: string;
+  isLoggedIn?: boolean;
 }
 
 interface WatchesDataType {

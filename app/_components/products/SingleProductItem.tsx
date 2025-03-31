@@ -11,6 +11,7 @@ import defaultWatchPic from "@/public/watch-default.jpg";
 import { addItemToCartAction } from "@/app/_lib/actions";
 import Loader from "../loader/page";
 import CartSpinner from "../CartSpinner";
+import { FaSearch } from "react-icons/fa";
 
 export default function SingleProductItem({
   name,
@@ -22,6 +23,7 @@ export default function SingleProductItem({
   hasDiscount,
   discount,
   id,
+  isLoggedIn,
 }: SingleWatch) {
   const [isPending, startTransition] = useTransition();
   async function handleAddToCart() {
@@ -79,19 +81,35 @@ export default function SingleProductItem({
       </div>
       <div className="flex flex-col">
         <hr className="border-stone-800" />
-        <div className="flex justify-between  h-full">
-          <button
-            onClick={handleAddToCart}
-            className="uppercase px-2 py-5 flex justify-center gap-2 items-center h-[100%] w-[50%] tracking-wide text-center   hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"
-          >
-            <BsFillCartPlusFill className="text-2xl" />
-          </button>
-          <Link
-            href={`/products/${id}`}
-            className=" uppercase p-2 flex justify-center gap-2 items-center h-full w-[50%] tracking-wide text-center hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"
-          >
-            <MdRemoveRedEye className="text-2xl" />
-          </Link>
+        <div
+          className={`flex ${
+            isLoggedIn ? "justify-center" : "justify-between"
+          } w-full h-full`}
+        >
+          {!isLoggedIn ? (
+            <Link
+              href={`/products/${id}`}
+              className="flex items-center gap-3 w-full justify-center uppercase p-4 tracking-wide text-center hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"
+            >
+              <FaSearch />
+              Explore Details
+            </Link>
+          ) : (
+            <>
+              <button
+                onClick={handleAddToCart}
+                className="uppercase px-2 py-5 flex justify-center gap-2 items-center h-[100%] w-[50%] tracking-wide text-center   hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"
+              >
+                <BsFillCartPlusFill className="text-2xl" />
+              </button>
+              <Link
+                href={`/products/${id}`}
+                className=" uppercase p-2 flex justify-center gap-2 items-center h-full w-[50%] tracking-wide text-center hover:text-stone-900 hover:bg-stone-300 transition-all ease-in-out duration-300"
+              >
+                <MdRemoveRedEye className="text-2xl" />
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
