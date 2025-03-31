@@ -3,12 +3,14 @@ import BackButton from "@/app/_components/SingleProduct/BackButton";
 import CompanyServices from "@/app/_components/SingleProduct/CompanyServices";
 import ProductInfo from "@/app/_components/SingleProduct/ProductInfo";
 import SingleProductImage from "@/app/_components/SingleProduct/SingleProductImage";
+import { auth } from "@/app/_lib/auth";
 import { getSingleWatch } from "@/app/_lib/data-service";
 import { dummyData } from "@/app/dummyData";
 import Link from "next/link";
 import React from "react";
 
 export default async function page({ params }: { params: Params }) {
+  const session = await auth();
   const { productId } = params;
 
   const selectedProduct = (await getSingleWatch(productId)) || {
@@ -35,7 +37,10 @@ export default async function page({ params }: { params: Params }) {
       <div className="w-full max-w-[65%] flex justify-center">
         <div className="flex flex-row justify-between">
           <SingleProductImage selectedProduct={selectedProduct} />
-          <ProductInfo selectedProduct={selectedProduct} />
+          <ProductInfo
+            selectedProduct={selectedProduct}
+            isLoggedIn={!!session?.user}
+          />
         </div>
       </div>
       <div className="w-full max-w-[65%] flex justify-center">

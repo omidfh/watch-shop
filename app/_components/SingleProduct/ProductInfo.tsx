@@ -4,13 +4,18 @@ import { addItemToCartAction } from "@/app/_lib/actions";
 import React, { useTransition } from "react";
 import Loader from "../loader/page";
 import CartSpinner from "../CartSpinner";
+import Link from "next/link";
+import { IoLogIn } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
 interface SingleProductInfoProps {
   selectedProduct: SingleWatch;
+  isLoggedIn: boolean;
 }
 
 export default function ProductInfo({
   selectedProduct,
+  isLoggedIn,
 }: SingleProductInfoProps) {
   const [isPending, startTransition] = useTransition();
   async function handleAddToCart() {
@@ -18,6 +23,7 @@ export default function ProductInfo({
       await addItemToCartAction(selectedProduct?.id, 1);
     });
   }
+  const pathname = usePathname();
 
   // if (isPending) return <CartSpinner />;
 
@@ -91,15 +97,25 @@ export default function ProductInfo({
             </span>
           </span>
         </div>
-        <button
-          disabled={isPending}
-          onClick={handleAddToCart}
-          className={`${
-            isPending ? "bg-stone-900" : "bg-yellow-100"
-          } text-lg text-center bg-opacity-90 p-4  text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500`}
-        >
-          {isPending ? <CartSpinner size="sm" /> : "Add to Cart"}
-        </button>
+        {!isLoggedIn ? (
+          <Link
+            href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}
+            className="flex justify-center items-center bg-yellow-100 text-lg text-center bg-opacity-90 p-4 text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500"
+          >
+            <p className="tracking-wider">Login to add to cart</p>
+            <IoLogIn className="text-3xl" />
+          </Link>
+        ) : (
+          <button
+            disabled={isPending}
+            onClick={handleAddToCart}
+            className={`${
+              isPending ? "bg-stone-900" : "bg-yellow-100"
+            } text-lg text-center bg-opacity-90 p-4  text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500`}
+          >
+            {isPending ? <CartSpinner size="sm" /> : "Add to Cart"}
+          </button>
+        )}
       </div>
     </div>
   );
