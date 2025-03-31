@@ -1,0 +1,118 @@
+/* Overlay to cover the entire screen */
+.loader-overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Clock loader styles */
+.clock-loader {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.clock-face {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: 3px solid #ffd700; /* Thicker golden frame */
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.8); /* Slightly transparent black */
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); /* Golden glow */
+}
+
+.hour-marker {
+  position: absolute;
+  width: 3px;
+  height: 10px;
+  background: #f0f0f0; /* Slightly off-white markers */
+  top: 5px;
+  left: 50%;
+  transform-origin: 50% 55px;
+}
+
+/* Make the 12, 3, 6, 9 markers larger */
+.hour-marker:nth-child(3n) {
+  width: 4px;
+  height: 12px;
+  background: #ffd700; /* Golden color for main markers */
+}
+
+.hour-hand {
+  position: absolute;
+  width: 4px;
+  height: 35px;
+  background: white; /* White hour hand */
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 50% 35px;
+  border-radius: 4px;
+  animation: rotateHour 24s linear infinite;
+}
+
+.minute-hand {
+  position: absolute;
+  width: 3px;
+  height: 45px;
+  background: #ffd700; /* Golden minute hand */
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 50% 45px;
+  border-radius: 4px;
+  animation: rotateMinute 2s linear infinite;
+}
+
+.center-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffd700; /* Golden center dot */
+  border: 2px solid white;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes rotateHour {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes rotateMinute {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

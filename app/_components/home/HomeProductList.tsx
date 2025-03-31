@@ -1,14 +1,12 @@
 import Link from "next/link";
 import React from "react";
 import SingleProduct from "./SingleProduct";
-import exampleWatch from "@/public/example-watch.png";
-import exampleWatch2 from "@/public/example-watch2.png";
-import exampleWatch3 from "@/public/example-watch3.png";
+
 import { getThreeWatches } from "@/app/_lib/data-service";
 
 export default async function HomeProductList() {
   const watches = await getThreeWatches();
-  console.log("wathcesare", watches);
+
   return (
     <div className="flex flex-col w-[100%] gap-24">
       <div className="flex justify-between items-center w-full">

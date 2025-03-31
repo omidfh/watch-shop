@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import Discover from "./_components/home/Discover";
 import HomeProductList from "./_components/home/HomeProductList";
 import LogoSlider from "./_components/home/LogoSlider";
 import Specifics from "./_components/home/Specifics";
 import Watch from "./_components/home/Watch";
+import LittleLoader from "./_components/loader/LittleLoader";
 
 export const metadata = {
   title: "Home",
@@ -34,7 +36,9 @@ export default function Home() {
         {/* //* PART 3 */}
         <div className="flex justify-center">
           <div className="w-full max-w-[65%] ">
-            <HomeProductList />
+            <Suspense fallback={<LittleLoader />}>
+              <HomeProductList />
+            </Suspense>
           </div>
         </div>
 

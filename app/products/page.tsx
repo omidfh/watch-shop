@@ -95,7 +95,7 @@ export default async function page({
           </div>
         </div>
       </div>
-      {watches.data.length && (
+      {watches.data.length !== 0 && (
         <PaginationParent totalPage={totalPage} currentPage={page} />
       )}
     </div>
