@@ -39,51 +39,66 @@ export default async function page() {
       <BreadCrumb />
 
       <div className="w-full max-w-[65%] flex justify-center">
-        <div className="flex flex-col w-full gap-10 bg-stone-100 bg-opacity-10 p-8">
-          {/* //* CART HEADER */}
-          <div className="w-full flex justify-start">
-            <h3 className="text-3xl uppercase tracking-wider">Your Cart</h3>
-          </div>
-
-          {/* //* ITEMS */}
-          <div className="flex flex-col ">
-            {watchesData?.map((item) => (
-              <CartItem
-                name={item.name}
-                id={item.id}
-                key={item.id}
-                price={item.price - item.discount}
-                image={item.picture}
-                quantity={findQuantity(cartItems?.products!, item.id) || 1}
-              />
-            ))}
-          </div>
-
-          {/* //* Total */}
-          <div className="flex w-full justify-center">
-            <p className="text-xl tracking-wider">
-              Total :{" "}
-              <span className="text-yellow-400">
-                $ {totalPrice.toLocaleString()}
-              </span>
-            </p>
-          </div>
-
-          {/* //* buttons */}
-          <div className="flex w-full justify-between items-center">
+        {!watchesData.length ? (
+          <div className="flex justify-between items-center w-full gap-10 bg-stone-100 bg-opacity-10 p-8">
+            <h2 className="uppercase tracking-wider text-xl">
+              Nothing Here Yet
+            </h2>
             <Link
               href={"/products"}
               className="flex items-center gap-2 p-2 text-lg hover:text-blue-500 transition:color duration-200 ease-in-out"
             >
-              <FaLongArrowAltLeft />
-              <p>Continue Shopping</p>
-            </Link>
-            <button className="flex items-center gap-2 p-2 text-lg hover:text-yellow-500 transition:color duration-200 ease-in-out">
-              <p>Checkout</p>
+              <p>Find Your Perfect Watch</p>
               <FaLongArrowAltRight />
-            </button>
+            </Link>
           </div>
-        </div>
+        ) : (
+          <div className="flex flex-col w-full gap-10 bg-stone-100 bg-opacity-10 p-8">
+            {/* //* CART HEADER */}
+            <div className="w-full flex justify-start">
+              <h3 className="text-3xl uppercase tracking-wider">Your Cart</h3>
+            </div>
+
+            {/* //* ITEMS */}
+            <div className="flex flex-col ">
+              {watchesData?.map((item) => (
+                <CartItem
+                  name={item.name}
+                  id={item.id}
+                  key={item.id}
+                  price={item.price - item.discount}
+                  image={item.picture}
+                  quantity={findQuantity(cartItems?.products!, item.id) || 1}
+                />
+              ))}
+            </div>
+
+            {/* //* Total */}
+            <div className="flex w-full justify-center">
+              <p className="text-xl tracking-wider">
+                Total :{" "}
+                <span className="text-yellow-400">
+                  $ {totalPrice.toLocaleString()}
+                </span>
+              </p>
+            </div>
+
+            {/* //* buttons */}
+            <div className="flex w-full justify-between items-center">
+              <Link
+                href={"/products"}
+                className="flex items-center gap-2 p-2 text-lg hover:text-blue-500 transition:color duration-200 ease-in-out"
+              >
+                <FaLongArrowAltLeft />
+                <p>Continue Shopping</p>
+              </Link>
+              <button className="flex items-center gap-2 p-2 text-lg hover:text-yellow-500 transition:color duration-200 ease-in-out">
+                <p>Checkout</p>
+                <FaLongArrowAltRight />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

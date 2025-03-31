@@ -7,6 +7,7 @@ import Sort from "../_components/products/Sort";
 import { getWatches } from "../_lib/data-service";
 import PaginationParent from "../_components/products/PaginationParent";
 import FilterParent from "../_components/products/FilterParent";
+import { Fragment } from "react";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -62,26 +63,38 @@ export default async function page({
           </div>
 
           {/* //* products */}
+
           <div className="grid md:grid-cols-3 sm:grid-cols-2 lg:gap-12 md:gap-4 sm:gap-2 lg:min-w-[70%]">
-            {watches?.data?.map((item) => (
-              <SingleProductItem
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                price={item.price}
-                picture={item.picture}
-                brand={item.brand}
-                material={item.material}
-                strap={item.strap}
-                hasDiscount={item.hasDiscount}
-                discount={item.discount}
-              />
-            ))}
+            {watches.data.length === 0 ? (
+              <div className="flex w-full justify-center  p-4 bg-stone-300 bg-opacity-10">
+                <h3 className="uppercase tracking-wider text-xl">
+                  There is no watch to show
+                </h3>
+              </div>
+            ) : (
+              <Fragment>
+                {watches?.data?.map((item) => (
+                  <SingleProductItem
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    price={item.price}
+                    picture={item.picture}
+                    brand={item.brand}
+                    material={item.material}
+                    strap={item.strap}
+                    hasDiscount={item.hasDiscount}
+                    discount={item.discount}
+                  />
+                ))}
+              </Fragment>
+            )}
           </div>
         </div>
       </div>
-
-      <PaginationParent totalPage={totalPage} currentPage={page} />
+      {watches.data.length && (
+        <PaginationParent totalPage={totalPage} currentPage={page} />
+      )}
     </div>
   );
 }
