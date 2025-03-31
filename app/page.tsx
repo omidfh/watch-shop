@@ -28,7 +28,7 @@ export default function Home() {
 
         {/* //* PART 2 */}
         <div className="flex justify-center bg-gray-100 bg-opacity-15  ">
-          <div className="max-w-[65%] ">
+          <div className="max-w-[65%]">
             <Specifics />
           </div>
         </div>
