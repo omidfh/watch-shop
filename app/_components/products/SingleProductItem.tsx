@@ -59,9 +59,10 @@ export default function SingleProductItem({
         <div className="flex justify-center px-3 pb-4  ">
           <Image
             src={picture || defaultWatchPic}
-            alt="watch-photo"
+            alt={name}
             width={250}
             height={200}
+            lazyRoot=""
             className="object-contain  transition-transform duration-300 hover:scale-110"
           />
         </div>
