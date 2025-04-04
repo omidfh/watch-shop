@@ -15,7 +15,7 @@ export default async function SingleProductWrapper({
 
   if (!selectedProduct) throw Error("Watch not found!");
   return (
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-col lg:flex-row justify-between">
       <SingleProductImage selectedProduct={selectedProduct} />
       <ProductInfo
         selectedProduct={selectedProduct}

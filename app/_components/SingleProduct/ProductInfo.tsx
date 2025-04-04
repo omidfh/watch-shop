@@ -28,10 +28,10 @@ export default function ProductInfo({
   // if (isPending) return <CartSpinner />;
 
   return (
-    <div className="flex py-6  px-10 w-[50%] ">
+    <div className="flex py-6  lg:px-10 w-full lg:w-[50%] ">
       <div className="flex flex-col justify-center gap-4">
         {/* //* Name */}
-        <h3 className="lg:text-5xl md:text-3xl text-stone-200 tracking-wider ">
+        <h3 className="text-2xl lg:text-4xl md:text-3xl text-stone-200 tracking-wider ">
           {selectedProduct?.name}
         </h3>
         {/* //* Price */}
