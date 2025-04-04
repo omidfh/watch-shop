@@ -84,15 +84,15 @@ export default async function page() {
             </div>
 
             {/* //* buttons */}
-            <div className="flex w-full justify-between items-center">
+            <div className="flex flex-col md:flex-row lg:flex-row w-full justify-between items-center">
               <Link
                 href={"/products"}
-                className="flex items-center gap-2 p-2 text-lg hover:text-blue-500 transition:color duration-200 ease-in-out"
+                className="flex items-center justify-center gap-2 p-2 w-full lg:w-auto md:w-auto text-md lg:text-lg md:text-lg hover:text-blue-500 transition:color duration-200 ease-in-out"
               >
                 <FaLongArrowAltLeft />
                 <p>Continue Shopping</p>
               </Link>
-              <button className="flex items-center gap-2 p-2 text-lg hover:text-yellow-500 transition:color duration-200 ease-in-out">
+              <button className="flex justify-center items-center gap-2 p-2 w-full lg:w-auto md:w-auto text-md lg:text-lg md:text-lg hover:text-yellow-500 transition:color duration-200 ease-in-out">
                 <p>Checkout</p>
                 <FaLongArrowAltRight />
               </button>
