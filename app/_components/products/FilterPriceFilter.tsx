@@ -1,5 +1,6 @@
 "use client";
 
+import { Filters, SearchParams } from "@/app/types";
 import React, { useEffect, useState, useRef } from "react";
 
 export default function FilterPriceFilter({
@@ -24,7 +25,7 @@ export default function FilterPriceFilter({
   useEffect(() => {
     setMinPrice(Number(parsedFilters?.price?.min) || 0);
     setMaxPrice(Number(parsedFilters?.price?.max) || biggestPrice);
-  }, [searchParams]);
+  }, [searchParams, biggestPrice]);
 
   // Update range progress on mount and when values change
   useEffect(() => {

@@ -11,26 +11,26 @@ export default async function page() {
 
   const cartItems = await getCartItems(session?.user?.id || "");
 
-  const Ids = cartItems?.products?.map((obj: {}) => Object.keys(obj)[0]) || [];
+  const Ids = cartItems?.products?.map((obj) => Object.keys(obj)[0]) || [];
 
   const watchesData = await getWatchesByIds(Ids);
 
   function findQuantity(
-    products: Record<string, number>[],
+    products: Record<string, number>[] = [],
     watchId: number | string
   ) {
-    if (!products || !watchId) return;
-
+    if (!watchId) return 0;
     const productObj = products.find(
       (obj: Record<string, number>) => Object.keys(obj)[0] === String(watchId)
     );
     return productObj ? Number(Object.values(productObj)[0]) : 0;
   }
 
+  if (!cartItems || !cartItems.products) return;
   const totalPrice = watchesData.reduce(
     (acc, cur) =>
       acc +
-      findQuantity(cartItems?.products!, cur.id)! * (cur.price - cur.discount),
+      findQuantity(cartItems?.products, cur?.id) * (cur.price - cur.discount),
     0
   );
 
@@ -68,7 +68,9 @@ export default async function page() {
                   key={item.id}
                   price={item.price - item.discount}
                   image={item.picture}
-                  quantity={findQuantity(cartItems?.products!, item.id) || 1}
+                  quantity={
+                    findQuantity(cartItems?.products ?? [], item.id) || 1
+                  }
                 />
               ))}
             </div>

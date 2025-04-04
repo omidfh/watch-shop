@@ -3,6 +3,7 @@ import FilterSelection from "./FilterSelection";
 import ChangeFilterButton from "./ChangeFilterButton";
 import FilterPriceFilter from "./FilterPriceFilter";
 import { getWatchElement } from "@/app/_lib/data-service";
+import { Filters, SearchParams, WatchElement } from "@/app/types";
 
 export default async function CatalogFilter({
   searchParams,

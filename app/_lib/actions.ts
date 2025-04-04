@@ -5,7 +5,7 @@ import { auth, signIn, signOut } from "./auth";
 import { addCart, addUser, getCartItems } from "./data-service";
 import bcrypt from "bcryptjs";
 import { supabase } from "./supabase";
-import { redirect } from "next/navigation";
+import { User } from "../types";
 
 export async function revalidateHome() {
   revalidatePath("/");
@@ -57,7 +57,7 @@ export async function updateUserAction(userData: FormData) {
   };
 
   try {
-    const { data, error } = await supabase
+    await supabase
       .from("users")
       .update(profileData)
       .eq("id", session?.user?.id)
@@ -219,46 +219,6 @@ export async function decreaseItemFromCart(
   }
 }
 
-// export async function uplaodUserImageAction(filePath: string, file) {
-//   const session = await auth();
-//   if (!session) throw new Error("You should login first!");
-//   try {
-//     const { data, error: uploadError } = await supabase.storage
-//       .from("profile-pics")
-//       .upload(filePath, file, {
-//         cacheControl: "3600",
-//         upsert: true,
-//       });
-
-//     if (uploadError) {
-//       throw uploadError;
-//     }
-
-//     // Get public URL of the uploaded image
-//     const {
-//       data: { publicUrl },
-//     } = supabase.storage.from("profile-pics").getPublicUrl(filePath);
-
-//     // Update user's profile in database with new image URL
-//     const { error: updateError } = await supabase
-//       .from("users")
-//       .update({ profileImage: publicUrl })
-//       .eq("id", session?.user?.id);
-
-//     if (updateError) {
-//       throw updateError;
-//     }
-
-//     return publicUrl;
-
-//     // Update local state with new image
-//     // setProfileImage(publicUrl);
-//   } catch (error) {
-//     console.error("Error uploading image:", error);
-//     alert("Failed to upload image. Please try again.");
-//   }
-// }
-
 export async function uploadUserImageAction(
   filePath: string,
   fileBase64: string,
@@ -273,7 +233,7 @@ export async function uploadUserImageAction(
     const buffer = Buffer.from(base64Data, "base64");
 
     // Upload to Supabase storage
-    const { data, error: uploadError } = await supabase.storage
+    const { error: uploadError } = await supabase.storage
       .from("profile-pics")
       .upload(filePath, buffer, {
         cacheControl: "3600",

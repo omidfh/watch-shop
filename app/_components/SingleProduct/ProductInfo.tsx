@@ -2,11 +2,11 @@
 
 import { addItemToCartAction } from "@/app/_lib/actions";
 import React, { useTransition } from "react";
-import Loader from "../loader/page";
 import CartSpinner from "../CartSpinner";
 import Link from "next/link";
 import { IoLogIn } from "react-icons/io5";
 import { usePathname } from "next/navigation";
+import { SingleWatch } from "@/app/types";
 
 interface SingleProductInfoProps {
   selectedProduct: SingleWatch;

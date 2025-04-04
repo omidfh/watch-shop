@@ -11,7 +11,7 @@ export default function ProfileImage({
   userId,
 }: {
   image?: string;
-  userId: number | string;
+  userId?: number | string;
 }) {
   const [profileImage, setProfileImage] = useState<string>(
     image || DEFAULT_PROFILE_PIC

@@ -2,7 +2,6 @@ import NavBar from "./_components/NavBar";
 import "@/app/_styles/global.css";
 import { Dosis } from "next/font/google";
 import Footer from "./_components/home/Footer";
-import { FilterProvider } from "./_context/ShowFilterContext";
 import AllContextProvider from "./_context/AllContextProvider";
 
 export const metadata = {

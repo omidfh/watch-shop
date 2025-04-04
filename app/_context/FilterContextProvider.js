@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { revalidatePath } from "next/cache";
 
 // Create the context
 const FilterContext = createContext();
@@ -22,6 +21,7 @@ export function SetFilterProvider({ children }) {
           const parsedFilters = JSON.parse(decodeURIComponent(filterParam));
           setFilters(parsedFilters);
         } catch (error) {
+          console.log(error);
           // If parsing fails, set empty filters
           setFilters({});
         }

@@ -50,12 +50,12 @@ const authConfig = {
     }),
   ],
   callbacks: {
-    authorized({ auth, request }) {
+    authorized({ auth }) {
       return !!auth?.user;
     },
 
     //sign in method
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       try {
         const existingUser = await getUserFromEmail(user.email);
 
@@ -72,7 +72,7 @@ const authConfig = {
       }
     },
 
-    async session({ session, user }) {
+    async session({ session }) {
       const loggedInUser = await getUserFromEmail(session?.user?.email);
       session.user.id = loggedInUser.id;
 

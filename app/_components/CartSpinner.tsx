@@ -1,5 +1,4 @@
 import React from "react";
-import { FaBox, FaShoppingCart } from "react-icons/fa";
 import { PiShoppingCartDuotone } from "react-icons/pi";
 
 const CartSpinner = ({ size = "md" }) => {

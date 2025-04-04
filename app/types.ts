@@ -1,4 +1,4 @@
-interface SingleWatch {
+export interface SingleWatch {
   id: number | string;
   name: string;
   price: number;
@@ -14,12 +14,12 @@ interface SingleWatch {
   isLoggedIn?: boolean;
 }
 
-interface WatchesDataType {
+export interface WatchesDataType {
   data: SingleWatch[];
   totalPages: number | string;
 }
 
-interface Filters {
+export interface Filters {
   price?: { min: string | number; max: string | number };
   material?: string;
   strap?: string;
@@ -28,17 +28,17 @@ interface Filters {
   gender?: string;
 }
 
-interface SearchParams {
+export interface SearchParams {
   page: string | number;
   filters?: string;
   sort: string;
 }
 
-interface Params {
+export interface Params {
   productId: string | number;
 }
 
-interface WatchElement {
+export interface WatchElement {
   name?: string;
   price?: number;
   hasDiscount?: boolean;
@@ -51,7 +51,7 @@ interface WatchElement {
   description?: string;
 }
 
-interface User {
+export interface User {
   id: number;
   email: string;
   password?: string;
@@ -61,7 +61,7 @@ interface User {
   profileImage?: string;
 }
 
-interface Cart {
+export interface Cart {
   id: number;
   userId: number;
   products: Record<string, number>[];

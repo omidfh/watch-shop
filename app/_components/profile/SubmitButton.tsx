@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useFormStatus } from "react-dom";
-import Loader from "../loader/page";
 import ProfileUpdateLoader from "../ProfileUploadLoader";
 
 export default function SubmitButton() {

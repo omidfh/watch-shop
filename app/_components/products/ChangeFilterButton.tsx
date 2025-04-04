@@ -2,7 +2,6 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useTransition } from "react";
-import { useFormStatus } from "react-dom";
 import Loader from "../loader/page";
 
 interface Filters {

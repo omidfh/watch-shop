@@ -1,6 +1,14 @@
 import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { sortingProducts } from "../_helpers/sortingProducts";
+import {
+  Cart,
+  Filters,
+  SingleWatch,
+  WatchElement,
+  WatchesDataType,
+} from "../types";
+import { User } from "next-auth";
 
 //* watch functions
 
@@ -70,16 +78,21 @@ export async function getWatches(
   }
 }
 
-export async function getWatchElement(colName1: string) {
+export async function getWatchElement(
+  colName1: string
+): Promise<WatchElement[]> {
   try {
     const { data, error } = await supabase.from("watches").select(colName1);
 
-    if (error) return console.log(error);
-    return data;
+    if (error) {
+      console.log(error);
+      return []; // Return empty array instead of undefined
+    }
+
+    return data as WatchElement[];
   } catch (err) {
     console.log(err);
-
-    throw new Error("watch specific could not be loaded");
+    throw new Error("Watch specific could not be loaded");
   }
 }
 
@@ -155,24 +168,11 @@ export async function getUserFromEmail(email: string) {
 
 export async function addCart(cartData: Partial<Cart>) {
   try {
-    const { data, error } = await supabase.from("cart").insert([cartData]);
+    const { error } = await supabase.from("cart").insert([cartData]);
     if (error) throw new Error(error.message);
   } catch (err) {
     console.log(err);
     throw new Error("use cart cannot be added");
-  }
-}
-
-export async function updateUser(userData: Partial<User>) {
-  try {
-    const { data, error } = await supabase
-      .from("users")
-      .update({ other_column: "otherValue" })
-      .eq("some_column", "someValue")
-      .select();
-  } catch (err) {
-    console.log(err);
-    throw new Error("An error occurred during profile update.");
   }
 }
 

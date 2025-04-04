@@ -9,6 +9,7 @@ import PaginationParent from "../_components/products/PaginationParent";
 import FilterParent from "../_components/products/FilterParent";
 import { Fragment } from "react";
 import { auth } from "../_lib/auth";
+import { Filters, SearchParams, WatchesDataType } from "../types";
 
 const ITEMS_PER_PAGE = 9;
 

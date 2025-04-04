@@ -44,6 +44,7 @@ export default function Login() {
         router.push(callbackUrl);
         await revalidateHome();
       } catch (error) {
+        console.log(error);
         setError("Something went wrong. Please try again.");
       }
     });
@@ -135,7 +136,7 @@ export default function Login() {
             className="text-stone-300 hover:underline py-1 tracking-wider"
             href={"/signup"}
           >
-            Don't have an account? Sign up
+            Don&apos;t have an account? Sign up
           </Link>
         </div>
       </div>

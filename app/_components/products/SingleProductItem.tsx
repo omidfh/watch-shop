@@ -11,6 +11,7 @@ import defaultWatchPic from "@/public/watch-default.jpg";
 import { addItemToCartAction } from "@/app/_lib/actions";
 import CartSpinner from "../CartSpinner";
 import { FaSearch } from "react-icons/fa";
+import { SingleWatch } from "@/app/types";
 
 export default function SingleProductItem({
   name,

@@ -1,10 +1,11 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import defaultWatchPic from "@/public/watch-default.jpg";
 import { FaSearch } from "react-icons/fa";
+import { SingleWatch } from "@/app/types";
 
 export default function SingleProduct({
   id,

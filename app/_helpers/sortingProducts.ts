@@ -1,3 +1,5 @@
+import { SingleWatch } from "../types";
+
 export function sortingProducts(sortType: string, watches: SingleWatch[]) {
   if (!watches || watches.length === 0) {
     return [];
@@ -8,17 +10,7 @@ export function sortingProducts(sortType: string, watches: SingleWatch[]) {
 
   switch (sortType) {
     case "random":
-      // Fisher-Yates shuffle algorithm for random sorting
-      // for (let i = sortedWatches.length - 1; i > 0; i--) {
-      //   const j = Math.floor(Math.random() * (i + 1));
-      //   [sortedWatches[i], sortedWatches[j]] = [
-      //     sortedWatches[j],
-      //     sortedWatches[i],
-      //   ];
-      // }
-
       return sortedWatches;
-      break;
 
     case "discount-percent-desc":
       // Sort by discount percentage ascending (low to high)

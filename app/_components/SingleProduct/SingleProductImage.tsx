@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import defaultWatchPic from "@/public/watch-default.jpg";
+import { SingleWatch } from "@/app/types";
 interface SingleProductImageProps {
   selectedProduct: SingleWatch;
 }

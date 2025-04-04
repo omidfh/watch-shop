@@ -1,13 +1,14 @@
 import { getWatchElement } from "@/app/_lib/data-service";
+import { WatchElement } from "@/app/types";
 import React from "react";
 
 type Props = {
   label: string;
-  type: string;
+  type: keyof WatchElement;
   defaultValue?: string;
 };
 
-type options = {
+type Option = {
   label: string;
   value: string;
 };
@@ -20,14 +21,22 @@ export default async function FilterSelection({
   const selectionData = await getWatchElement(type);
 
   const uniqueValues = Array.from(
-    new Set(selectionData?.map((item: any) => item[type]))
+    new Set(
+      selectionData
+        ?.map((item) => {
+          // Type assertion to handle potentially undefined values
+          const value = item[type];
+          return value !== undefined ? String(value) : "";
+        })
+        .filter(Boolean) // Remove empty values
+    )
   );
 
-  const optionsData: options[] = [
+  const optionsData: Option[] = [
     { label: "All", value: "" }, // Add "All" option
     ...uniqueValues.map((value) => ({
       label: value.charAt(0).toUpperCase() + value.slice(1),
-      value: value,
+      value,
     })),
   ];
 

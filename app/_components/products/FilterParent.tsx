@@ -3,13 +3,16 @@
 import React, { ReactElement, useEffect } from "react";
 import { LuSquareMinus, LuSquarePlus } from "react-icons/lu";
 import { useToggleFilter } from "../../_context/ShowFilterContext";
+interface SearchParams {
+  filters?: string; // URL encoded JSON string
+}
 
 export default function FilterParent({
   children,
   searchParams,
 }: {
   children: ReactElement;
-  searchParams: any;
+  searchParams: SearchParams;
 }) {
   const { show, toggleShow, setShow } = useToggleFilter();
 

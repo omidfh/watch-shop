@@ -1,15 +1,18 @@
-import CartSpinner from "@/app/_components/CartSpinner";
 import LittleLoader from "@/app/_components/loader/LittleLoader";
-import Loader from "@/app/_components/loader/page";
 import BreadCrumb from "@/app/_components/products/BreadCrumb";
 import BackButton from "@/app/_components/SingleProduct/BackButton";
 import CompanyServices from "@/app/_components/SingleProduct/CompanyServices";
 
 import SingleProductWrapper from "@/app/_components/SingleProduct/SingleProductWrapper";
+import { Params } from "@/app/types";
 
 import React, { Suspense } from "react";
 
-export default async function page({ params }: { params: Params }) {
+export default async function SingleProductPage({
+  params,
+}: {
+  params: Params;
+}) {
   const { productId } = params;
 
   return (
