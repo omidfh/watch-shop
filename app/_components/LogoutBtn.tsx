@@ -13,7 +13,7 @@ export default function LogoutBtn() {
     <form action={handleSignOut}>
       <button
         type="submit"
-        className="flex  items-center text-4xl text-center  hover:text-stone-500  transition-all ease-in-out duration-300"
+        className="flex  items-center text-xl lg:text-4xl nd:text-2xl text-center  hover:text-stone-500  transition-all ease-in-out duration-300"
       >
         <IoLogOut />
       </button>

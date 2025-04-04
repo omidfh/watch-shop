@@ -9,7 +9,6 @@ import { HiMiniSwatch } from "react-icons/hi2";
 import { MdRemoveRedEye } from "react-icons/md";
 import defaultWatchPic from "@/public/watch-default.jpg";
 import { addItemToCartAction } from "@/app/_lib/actions";
-import Loader from "../loader/page";
 import CartSpinner from "../CartSpinner";
 import { FaSearch } from "react-icons/fa";
 

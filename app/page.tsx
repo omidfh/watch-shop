@@ -17,8 +17,8 @@ export default function Home() {
       <div className="flex flex-col gap-40">
         {/* //*  PART 1 */}
         <div className="flex justify-center">
-          <div className="flex flex-col items-center w-full max-w-[65%] ">
-            <div className="flex justify-between w-full">
+          <div className="flex flex-col items-center w-full max-w-[85%] lg:max-w-[65%] md:max-w-[75%]">
+            <div className="flex items-start justify-between w-full">
               {" "}
               <Discover />
               <Watch />

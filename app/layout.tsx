@@ -31,7 +31,9 @@ export default function RootLayout({
           {/* <div className="flex flex-col items-center w-full max-w-[65%]"> */}
           {/* <div className="flex flex-col"> */}
           <div className="flex w-[100%] justify-center">
-            <div className="flex items-center w-full max-w-[65%]  justify-start">
+            <div
+              className={`flex items-center w-full max-w-[85%] lg:max-w-[65%] md:max-w-[75%] justify-start`}
+            >
               <NavBar />
             </div>
           </div>
@@ -39,7 +41,7 @@ export default function RootLayout({
           {/* </div> */}
           {/* //*FOOTER */}
           <div className=" flex w-[100%] justify-center  bg-amber-100 bg-opacity-40 ">
-            <div className="flex items-center w-full max-w-[65%]  justify-center">
+            <div className="flex items-center w-full max-w-[85%] lg:max-w-[65%] md:max-w-[75%]  justify-center">
               <Footer />
             </div>
           </div>

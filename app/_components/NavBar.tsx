@@ -18,10 +18,10 @@ export default async function NavBar() {
       {/* <div className=""> */}
 
       {/* </div> */}
-      <ul className="flex flex-row list-none gap-8 bg-background items-center  text-lg text-stone-300">
-        <li>
+      <ul className="flex flex-row list-none lg:gap-8 md:gap-6 sm:gap-4 bg-background items-center  text-lg text-stone-300">
+        <li className="hidden md:block lg:block">
           <Link href={"/"}>
-            <div className="border-yellow-100 border border-opacity-30">
+            <div className="border-yellow-100 border border-opacity-30 ">
               <Image
                 width={"70"}
                 height={"70"}

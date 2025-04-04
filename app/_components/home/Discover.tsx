@@ -25,7 +25,7 @@ export default function Discover() {
       initial="offscreen"
       whileInView="onscreen"
       viewport={{ once: true, amount: 0.8 }}
-      variants={variants}
+      // variants={variants}
       className="flex flex-col items-start justify-start gap-14 w-[30%]"
     >
       <div className="flex flex-col justify-evenly items-start gap-4 uppercase tracking-wide">
@@ -40,13 +40,13 @@ export default function Discover() {
       <div className="flex gap-4">
         <Link
           href={"/products"}
-          className="bg-yellow-100 text-center bg-opacity-90 p-4 w-32 text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500"
+          className="bg-yellow-100 flex items-center text-sm md:text-md lg:text-lg justify-center text-center bg-opacity-90 p-1 py-0 lg:p-4 md:p-4 w-20 lg:w-32 md:w-32 text-black hover:text-white hover:bg-opacity-20 hover:transition-all ease-in-out duration-500"
         >
           Shop Now
         </Link>
         <Link
           href={"#"}
-          className="bg-stone-300 text-center bg-opacity-20 p-4 w-32 hover:bg-blue-200 hover:text-black hover:transition-all ease-in-out duration-500"
+          className="bg-stone-200 flex items-center text-sm md:text-md lg:text-lg justify-center text-center bg-opacity-90 p-2 lg:p-4 md:p-4 w-20 lg:w-32 md:w-32 text-black hover:bg-blue-200 hover:text-black hover:transition-all ease-in-out duration-500"
         >
           Learn More
         </Link>

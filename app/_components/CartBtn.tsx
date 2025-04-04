@@ -12,9 +12,9 @@ export default async function CartBtn({ userId }: { userId: number }) {
         href={"/profile/cart"}
         className="flex relative text-stone-300 items-center  hover:text-yellow-100  transition-all duration-200 ease-in-out"
       >
-        <PiShoppingCartDuotone className="text-3xl" />
+        <PiShoppingCartDuotone className="lg:text-3xl md:text-2xl text-xl" />
         {userId && cartItems?.products?.length! > 0 && (
-          <span className="px-1.5 absolute top-4 left-6  text-xs text-stone-900 bg-yellow-200 rounded-full m-auto ">
+          <span className="px-[30%] lg:px-1.5 absolute top-4 left-4  text-xs text-stone-900 bg-yellow-200 rounded-full m-auto ">
             {cartItems?.products.length}
           </span>
         )}
