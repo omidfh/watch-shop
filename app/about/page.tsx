@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-export default function About() {
+function About() {
   return (
     <div className=" flex flex-col items-center  bg-black text-white px-6 md:px-20">
       <p className="text-lg text-gray-300 max-w-2xl text-center leading-relaxed">
@@ -16,4 +16,10 @@ export default function About() {
       </p>
     </div>
   );
+}
+
+export default function AboutWrapper() {
+  <Suspense>
+    <About />
+  </Suspense>;
 }

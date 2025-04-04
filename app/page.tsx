@@ -11,7 +11,7 @@ export const metadata = {
   description: "explore watches choose favorite one",
 };
 
-export default function Home() {
+function Home() {
   return (
     <div className="flex flex-col justify-between gap-24 ">
       <div className="flex flex-col gap-40">
@@ -57,4 +57,10 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export default function HomeWrapper() {
+  <Suspense>
+    <Home />
+  </Suspense>;
 }

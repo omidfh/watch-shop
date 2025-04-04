@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
 function NotFound() {
@@ -18,4 +19,10 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+// export default NotFound;
+
+export default function NotFoundWrapper() {
+  <Suspense>
+    <NotFound />
+  </Suspense>;
+}

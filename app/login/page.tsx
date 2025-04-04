@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { Suspense, useState, useTransition } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import Loader from "../loader/page";
 import { revalidateHome } from "../_lib/actions";
 
-export default function Login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -142,4 +142,10 @@ export default function Login() {
       </div>
     </div>
   );
+}
+
+export default function LoginWrapper() {
+  <Suspense>
+    <Login />
+  </Suspense>;
 }
