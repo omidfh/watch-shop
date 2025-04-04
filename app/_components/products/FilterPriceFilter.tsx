@@ -74,7 +74,7 @@ export default function FilterPriceFilter({
       </label>
       <div className="flex flex-col justify-between gap-4 w-full">
         <div className="w-full flex flex-col gap-1 ">
-          <p className="text-stone-300 text-opacity-50">
+          <p className="text-stone-300 text-opacity-50 text-xs md:text-sm lg:text-sm">
             {minPrice.toLocaleString()} $
           </p>
           <div className="flex items-center w-full">
@@ -94,7 +94,7 @@ export default function FilterPriceFilter({
         </div>
         <div className="flex items-center w-full">
           <div className="flex flex-col gap-1 w-full">
-            <p className="text-stone-300 text-opacity-50">
+            <p className="text-stone-300 text-opacity-50 text-xs md:text-sm lg:text-sm">
               {maxPrice.toLocaleString()} $
             </p>
             <input

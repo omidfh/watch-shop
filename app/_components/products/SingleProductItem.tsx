@@ -36,7 +36,7 @@ export default function SingleProductItem({
   return (
     <div className="flex flex-col justify-evenly bg-stone-400 bg-opacity-10 ">
       <div className="flex flex-col justify-between h-full">
-        <div className="flex justify-between items-start px-4 py-2 lg:text-lg md:text:md sm:text-sm ">
+        <div className="flex justify-between items-start px-4 py-2 lg:text-lg md:text:md text-md ">
           <p className="max-w-[50%] text-stone-300 text-md">{name}</p>
 
           <div className="flex flex-col items-center ">

@@ -18,14 +18,16 @@ export default async function page({ params }: { params: Params }) {
       <BreadCrumb />
       <BackButton />
       {/* //* Product Info & Image */}
-      <div className="w-full max-w-[65%] flex justify-center">
+      <div className="w-full max-w-[85%] lg:max-w-[65%] md:max-w-[75%] flex justify-center">
         <Suspense fallback={<LittleLoader />}>
           <SingleProductWrapper productId={productId} />
         </Suspense>
       </div>
-      <div className="w-full max-w-[65%] flex justify-center">
+      <div className="w-full max-w-[85%] lg:max-w-[65%] md:max-w-[75%] flex justify-center">
         <div className="flex flex-col gap-8">
-          <h3 className="text-4xl">Key Features at a Glance</h3>
+          <h3 className="text-2xl md:text-3xl lg:text-4xl">
+            Key Features at a Glance
+          </h3>
           <CompanyServices />
         </div>
       </div>

@@ -4,10 +4,6 @@ import ChangeFilterButton from "./ChangeFilterButton";
 import FilterPriceFilter from "./FilterPriceFilter";
 import { getWatchElement } from "@/app/_lib/data-service";
 
-interface PricesType {
-  price: {};
-}
-
 export default async function CatalogFilter({
   searchParams,
 }: {
@@ -30,9 +26,10 @@ export default async function CatalogFilter({
   );
 
   return (
-    <form className="flex w-full lg:flex-col md:flex-row sm:flex-row gap-10 rounded-md p-6">
+    <form className=" flex w-full flex-col  gap-10 rounded-md p-6 ">
       {/* //*part 1 */}
-      <div className="flex w-full">
+
+      <div className="flex w-full ">
         {/* //* price */}
         {/* <div className="flex flex-col justify-between gap-1 h-full w-full">
           <label id="filterLabel" htmlFor="price">

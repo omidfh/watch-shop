@@ -54,7 +54,7 @@ export default async function page({
 
       {/* //* Products and  FILTER */}
       <div className="flex w-full  justify-center mx-auto">
-        <div className="flex lg:flex-row md:flex-col sm:flex-col sm:gap-8 lg:items-start md:items-center justify-center w-full">
+        <div className="flex gap-2 lg:flex-row md:flex-row flex-col sm:gap-8  lg:items-start md:items-start justify-center w-full px-4 lg:px-0 ">
           {/* //*filters */}
           <div className="flex flex-col lg:w-[19%]  gap-4">
             <Sort sort={sort} />
@@ -66,7 +66,7 @@ export default async function page({
 
           {/* //* products */}
 
-          <div className="grid md:grid-cols-3 sm:grid-cols-2 lg:gap-12 md:gap-4 sm:gap-2 lg:min-w-[70%]">
+          <div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 lg:gap-12 md:gap-4 gap-2 lg:min-w-[70%]">
             {watches.data.length === 0 ? (
               <div className="flex w-full justify-center  p-4 bg-stone-300 bg-opacity-10">
                 <h3 className="uppercase tracking-wider text-xl">
