@@ -3,6 +3,7 @@ import "@/app/_styles/global.css";
 import { Dosis } from "next/font/google";
 import Footer from "./_components/home/Footer";
 import AllContextProvider from "./_context/AllContextProvider";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Home",
@@ -41,7 +42,9 @@ export default function RootLayout({
           {/* //*FOOTER */}
           <div className=" flex w-[100%] justify-center  bg-amber-100 bg-opacity-40 ">
             <div className="flex items-center w-full max-w-[85%] lg:max-w-[65%] md:max-w-[75%]  justify-center">
-              <Footer />
+              <Suspense>
+                <Footer />
+              </Suspense>
             </div>
           </div>
         </AllContextProvider>
