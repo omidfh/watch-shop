@@ -28,10 +28,10 @@ export default function HomeProductListHeader() {
       variants={variants}
       className="flex flex-col uppercase"
     >
-      <p className="text-sm text-yellow-300 text-opacity-60">
+      <p className="text-xs md:text-sm lg:text-sm text-yellow-300 text-opacity-60">
         Timeless Creations
       </p>
-      <p className="text-4xl text-stone-100">
+      <p className="  text-lg md:text-2xl lg:text-4xl text-stone-100">
         Discover Watches That Speak Your Style
       </p>
     </motion.div>

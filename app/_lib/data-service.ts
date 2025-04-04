@@ -6,7 +6,7 @@ import { sortingProducts } from "../_helpers/sortingProducts";
 
 export async function getThreeWatches() {
   try {
-    const randNum = Math.floor(Math.random() * 19); // 0 to 18 inclusive
+    const randNum = Math.floor(Math.random() * 16); // 0 to 18 inclusive
     const { data: watches, error } = await supabase
       .from("watches")
       .select("*")

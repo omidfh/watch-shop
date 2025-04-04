@@ -28,14 +28,14 @@ export default function Home() {
 
         {/* //* PART 2 */}
         <div className="flex justify-center bg-gray-100 bg-opacity-15  ">
-          <div className="max-w-[65%]">
+          <div className="max-w-[85%] lg:max-w-[65%] md:max-w-[75%]">
             <Specifics />
           </div>
         </div>
 
         {/* //* PART 3 */}
         <div className="flex justify-center">
-          <div className="w-full max-w-[65%] ">
+          <div className="w-full max-w-[85%] lg:max-w-[65%] md:max-w-[75%]] ">
             <Suspense fallback={<LittleLoader />}>
               <HomeProductList />
             </Suspense>
