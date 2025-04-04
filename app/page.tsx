@@ -60,7 +60,9 @@ function Home() {
 }
 
 export default function HomeWrapper() {
-  <Suspense>
-    <Home />
-  </Suspense>;
+  return (
+    <Suspense>
+      <Home />
+    </Suspense>
+  );
 }

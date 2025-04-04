@@ -22,7 +22,9 @@ function NotFound() {
 // export default NotFound;
 
 export default function NotFoundWrapper() {
-  <Suspense>
-    <NotFound />
-  </Suspense>;
+  return (
+    <Suspense>
+      <NotFound />
+    </Suspense>
+  );
 }

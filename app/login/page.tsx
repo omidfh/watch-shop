@@ -145,7 +145,9 @@ function Login() {
 }
 
 export default function LoginWrapper() {
-  <Suspense>
-    <Login />
-  </Suspense>;
+  return (
+    <Suspense>
+      <Login />
+    </Suspense>
+  );
 }

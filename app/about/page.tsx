@@ -19,7 +19,9 @@ function About() {
 }
 
 export default function AboutWrapper() {
-  <Suspense>
-    <About />
-  </Suspense>;
+  return (
+    <Suspense>
+      <About />
+    </Suspense>
+  );
 }
