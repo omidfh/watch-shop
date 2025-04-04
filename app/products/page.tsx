@@ -7,7 +7,7 @@ import Sort from "../_components/products/Sort";
 import { getWatches } from "../_lib/data-service";
 import PaginationParent from "../_components/products/PaginationParent";
 import FilterParent from "../_components/products/FilterParent";
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import { auth } from "../_lib/auth";
 import { Filters, SearchParams, WatchesDataType } from "../types";
 
@@ -61,7 +61,9 @@ export default async function page({
             <Sort sort={sort} />
 
             <FilterParent searchParams={searchParams}>
-              <CatalogFilter searchParams={searchParams} />
+              <Suspense>
+                <CatalogFilter searchParams={searchParams} />
+              </Suspense>
             </FilterParent>
           </div>
 
