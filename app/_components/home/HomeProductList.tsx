@@ -14,7 +14,7 @@ export default async function HomeProductList() {
         <HomeProductListHeader />
         <div>
           <Link
-            className="bg-stone-300  flex items-center text-xs md:text-lg lg:text-lg justify-center text-center bg-opacity-90 p-1  lg:p-4 md:p-2 w-20 lg:w-32 md:w-32 text-black  uppercase  hover:bg-opacity-10 hover:text-stone-100 hover:transition-all ease-in-out duration-500"
+            className="bg-stone-300  flex items-center text-xs md:text-lg lg:text-lg justify-center text-center bg-opacity-90 p-1  lg:p-2 md:p-2 w-20 lg:w-32 md:w-32 text-black  uppercase  hover:bg-opacity-10 hover:text-stone-100 hover:transition-all ease-in-out duration-500"
             href={"/products"}
           >
             all products
@@ -23,7 +23,7 @@ export default async function HomeProductList() {
       </div>
       {/* //*Products */}
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid lg:grid-cols-3 md:grid-cols-3 gap-4">
         {watches?.map((watch) => (
           <SingleProduct
             key={watch.id}

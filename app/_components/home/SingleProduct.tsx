@@ -6,24 +6,6 @@ import Link from "next/link";
 import defaultWatchPic from "@/public/watch-default.jpg";
 import { FaSearch } from "react-icons/fa";
 
-import { motion } from "framer-motion";
-
-const variants = {
-  offscreen: {
-    y: 200,
-    opacity: 0,
-  },
-  onscreen: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      bounce: 0.4,
-      duration: 0.8,
-    },
-  },
-};
-
 export default function SingleProduct({
   id,
   name,
@@ -33,7 +15,7 @@ export default function SingleProduct({
   picture,
 }: Partial<SingleWatch>) {
   return (
-    <motion.div className="flex flex-col justify-evenly bg-stone-400 bg-opacity-10 ">
+    <div className="flex flex-col justify-evenly bg-stone-400 bg-opacity-10 ">
       <div className="flex flex-col justify-between h-full">
         <div className="flex justify-between items-start px-4 py-2 lg:text-lg md:text:md sm:text-sm ">
           <p className="max-w-[50%] text-stone-300 text-md">{name}</p>
@@ -73,6 +55,6 @@ export default function SingleProduct({
           Explore Details
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }
