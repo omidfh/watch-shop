@@ -48,7 +48,7 @@ export default function SignUpPage() {
         if (error === "") await signUpAction({ email, password });
 
         resetElements();
-        router.push("/");
+        router.push("/login");
       } catch (err) {
         console.log(err);
       }

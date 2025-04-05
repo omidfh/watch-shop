@@ -27,10 +27,10 @@ export default function Avatar({ pic }: { pic: string }) {
   }, []);
 
   function imageSizeConverter() {
-    if (screenSize === "large") return 70;
-    if (screenSize === "medium") return 60;
-    if (screenSize === "small") return 40;
-    return 65; // Default fallback
+    if (screenSize === "large") return 55;
+    if (screenSize === "medium") return 50;
+    if (screenSize === "small") return 35;
+    return 50; // Default fallback
   }
   return (
     <Link href={"/profile"}>
