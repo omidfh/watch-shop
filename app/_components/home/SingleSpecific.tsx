@@ -20,7 +20,7 @@ export default function SingleSpecific({
       <div className="flex flex-col justify-between gap-8 h-full">
         <div className="flex gap-4 ">
           <div>
-            <div className="p-1 bg-stone-100 bg-opacity-60 rounded-full">
+            <div className="p-1 bg-stone-600 bg-opacity-40 rounded-full">
               {children}
             </div>
           </div>
