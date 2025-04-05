@@ -37,6 +37,8 @@ export async function signUpAction(formdata: Partial<User>) {
 
     if (user) await addCart({ userId: user[0].id, products: [{}] });
 
+    await revalidateHome();
+
     return user;
   } catch (err) {
     console.error("Signup error:", err);
