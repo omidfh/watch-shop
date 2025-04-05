@@ -83,7 +83,7 @@ export default function ProfileImage({
   };
 
   return (
-    <div className="flex flex-col gap-4 items-start w-full max-w-xs">
+    <div className="flex flex-col gap-4 items-center lg:items-start md:items-start w-full max-w-xs">
       <div className="flex items-center gap-8">
         <div className="relative">
           <Image
@@ -118,9 +118,11 @@ export default function ProfileImage({
       )}
 
       {isUploading ? (
-        <p className="text-sm text-gray-600">Uploading...</p>
+        <p className="text-sm text-gray-600 text-center md:text-start lg-text-start">
+          Uploading...
+        </p>
       ) : (
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 text-center md:text-start lg-text-start">
           Click on the image to upload a new profile picture
         </p>
       )}

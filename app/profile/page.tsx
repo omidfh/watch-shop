@@ -15,22 +15,22 @@ export default async function page() {
     <div className="flex flex-col w-full justify-between items-center gap-24">
       <BreadCrumb />
 
-      <div className="w-full max-w-[65%] flex justify-center">
+      <div className="w-full max-w-[85%] lg:max-w-[65%] md:max-w-[75%] flex justify-center">
         <div className="flex flex-col w-full gap-10 bg-stone-100 bg-opacity-10 p-8">
           {/* //* PROFILE HEADER */}
-          <div className="w-full flex justify-start">
-            <h3 className="text-3xl uppercase tracking-wider">
+          <div className="w-full flex justify-center lg:justify-start md:justify-start">
+            <h3 className="text-xl md:text-2xl lg:text-3xl uppercase tracking-wider">
               Profile Information
             </h3>
           </div>
 
           {/* //* PROFILE INPUTS */}
-          <form className="flex flex-col gap-10" action={updateUserAction}>
+          <form className="flex flex-col  gap-10" action={updateUserAction}>
             <ProfileImage image={userData.profileImage} />
             {/* //* name & email */}
-            <div className="flex w-full justify-between">
+            <div className="flex flex-col md:flex-row lg:flex-row gap-8 md:gap-1 lg:gap-1 w-full justify-between">
               {/* //*name */}
-              <div className="flex flex-col gap-1 w-[40%]">
+              <div className="flex flex-col gap-1 w-full lg:w-[40%] md:w-[40%]">
                 <label id="filterLabel" htmlFor="name">
                   Name
                 </label>
@@ -46,7 +46,7 @@ export default async function page() {
               </div>
 
               {/* //* email */}
-              <div className="flex flex-col gap-1 w-[40%]">
+              <div className="flex flex-col gap-1 w-full lg:w-[40%] md:w-[40%]">
                 <label id="filterLabel" htmlFor="email">
                   Email
                 </label>
@@ -61,9 +61,9 @@ export default async function page() {
               </div>
             </div>
             {/* //* phone number and zip Code*/}
-            <div className="flex w-full justify-between">
+            <div className="flex gap-8 md:gap-1 lg:gap-1 flex-col md:flex-row lg:flex-row w-full justify-between">
               {/* //*phone number */}
-              <div className="flex flex-col gap-1 w-[40%]">
+              <div className="flex flex-col gap-1 w-full lg:w-[40%] md:w-[40%]">
                 <label id="filterLabel" htmlFor="phoneNumber">
                   Phone Number
                 </label>
@@ -78,7 +78,7 @@ export default async function page() {
               </div>
 
               {/* //* zip Code */}
-              <div className="flex flex-col gap-1 w-[40%]">
+              <div className="flex flex-col gap-1 w-full lg:w-[40%] md:w-[40%]">
                 <label id="filterLabel" htmlFor="zipCode">
                   Zip Code
                 </label>
